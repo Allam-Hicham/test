@@ -1,0 +1,47 @@
+.marquee-container {
+    display: inline-block;
+    vertical-align: middle;
+    padding-right: 5px;
+    width: 110px;  /* Width of the container */
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+#marquee {
+    display: inline-block;
+    background-color: rgb(3, 3, 84);
+    color:aqua;
+    padding-left: 100%;  /* Start outside the container */
+    animation: marquee 14s linear infinite;
+}
+
+@keyframes marquee {
+    0% { transform: translateX(0%);}
+    40% { transform: translateX(-50%);}
+    100% { transform: translateX(-100%);}
+}
+
+
+.anounce-container {
+    display: block;
+    background-color: yellow;
+    height: 24px;
+    padding-top: 4px;
+    padding-right: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    z-index: 3;
+}
+
+#anounce {
+    z-index: 3;
+    display: inline-block;
+    color: red;
+    padding-right: 100%;  /* Start outside the container */
+    animation: anounce 20s linear infinite;
+}
+
+@keyframes anounce {
+    0% { transform: translateX(0%);}
+    100% { transform: translateX(80%);}
+}

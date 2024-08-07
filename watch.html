@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="Anime,anime,harbane,harbane,ANIME HARBANE">
+    <meta name="description" content="watching anime online web page">
+    <meta name="author" content="anime harbane">
+    <meta http-equiv="refresh" content="3600;" />
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0">
+    <title>anime harbane</title>
+    <link rel="shortcut icon" href="images/logo/Background.jpg" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/main.css">
+    <link id="my_style" rel="stylesheet" href="css/blue.css">
+    <link rel="stylesheet" href="css/Moving Text.css">
+    <link rel="stylesheet" href="css/about.css">
+
+    <style>
+        #comments-get{
+            display: none;
+            margin: 16px auto 10px auto;
+            width: 200px;
+            height: 40px;
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <!-- head page-->
+    <div class="top_page_watch">
+        <div>
+            <img style="height: 40px;background-color: white;border-radius: 10px;margin-top: 2px;margin-right: 3px;" src="images/logo/Background.jpg" title="anime harbane logo">
+            <p id="animeharbane-watch" class="p_title">ANIME HARBANE</p> 
+        </div>
+        
+        <div>
+            <p style="font-size: 20px;margin: 4px;">Enjoy watching ✔</p>
+        </div>
+        <div>
+            <p style="font-size: 8px;margin: 4px;">Current Time: <span id="current-time"></span></p>
+            <p style="font-size: 9px;margin: 4px;">Time Spent ⏳: <span id="time-spent"></span></p>
+        </div>
+    </div>
+    <div class="anounce-container"  style="display: none;">
+        <div id="anounce"></div>
+    </div>
+    
+    <!-- reload all-->
+    <div id="spinner_container">
+        <div class="spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+    </div>
+    <!-- load card-->
+    <div id="spinner_cards" style="height: 120px; display: none;">
+        <div class="spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- anime description -->
+    <div id="description"></div>
+    <div id="phone-container" style="background-color: rgba(70, 47, 17, 0.946);"></div>
+
+    <!-- season and episodes -->
+    <div id="episodes-container" style="display: none;">
+        <div class="separate"></div>
+        <p class="section_title">Episodes</p>
+        <div id="episodes_grid" >
+        </div>
+    </div>
+    <!-- video player -->
+    <p id="ep_target"></p>
+    <div class="separate"></div>
+    <p class="section_title">Video Player</p>
+    <div id="videoPlayer" style="background: url('images/logo/Background.jpg') 100%;">
+      </div>
+    </div>
+    <!-- comments -->
+    <div class="separate"></div>
+    <div>
+        <button style="display: block;" id="comments-get" onclick="getComments(0);this.style.display = 'none';document.getElementById('comments-container').style.display='block';" title="get comments" type="button">get comments</button>
+    </div>
+    </div>
+     <div id="comments-container" style="display: none;">
+        <p class="section_title">Comments: <span id="comment-title"></span></p>
+        <div id="comments">
+        <form id="dataFormComments">
+            <label for="name"></label>
+            <input type="text" id="name" name="name" placeholder="name*" maxlength="40" required>
+            <label for="email"></label>
+            <input type="email" id="email" name="email" placeholder="Email">
+            <button type="submit" id="submit-comment" >Submit</button>
+            <br>
+            <input type="text" id="comment" name="comment" placeholder="drop your comment here*" maxlength="800" required>
+            <div id="response" style="height: 18px;color:greenyellow;padding-top: 3px;"></div>
+        </form>
+        <div id="responseComments"></div>
+        </div>
+     </div>
+        <div id="scroll_to_top" onclick="scroll_to_top()">↑</div>
+    
+        <!-- about -->
+    <div id="about">
+        <p id="about-title">About Us</p>
+        <div class="social">
+            <div></div>
+            <a href="https://www.facebook.com/people/Anime-Harbane/61555506476548/" target="_blank">
+                <img class="social" src="images/logo/facebook.jpg" alt="facebook">
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <img class="social" src="images/logo/instagram.jpg" alt="instagram">
+            </a>
+            <a href="https://www.tiktok.com/@anime.harbane?_t=8oVCu7TonG2&_r=1" target="_blank">
+                <img class="social" src="images/logo/tiktok.jpg" alt="tiktok">
+            </a>
+            <div></div>
+        </div>
+        <div style="padding-bottom: 5px;width: 100%;background-color: black;color: aliceblue;text-align: center;">
+            <div style="background-color: #000000;color: #ffffff;padding: 8px 34%; font-size: 14px;">
+                <a href="https://animeharbane.com" style="color: #ffffff;padding-left: 10px;">Home</a>
+                <a href="https://animeharbane.com/about/terms-of-services.html" style="color: #ffffff;padding-left: 10px;">Terms Of Service</a>
+                <a href="https://animeharbane.com/about/privacy-policy.html" style="color: #ffffff;padding-left: 10px;">Privacy Policy</a>
+              </div>
+            <p style="font-family: Söhne, sans-serif;">all rigth are reserved copyright &copy; 2024 .</p>
+        </div>
+    </div>
+</body>
+</html>
+
+<!--  this is all script -->
+  <script>
+    const localStyle = JSON.parse(localStorage.getItem('style'));
+    document.getElementById('my_style').href = localStyle[2];
+  </script>
+  <script src="js/time.js"></script>
+  <script src="js/watch.js" ></script>
+  <script src="js/watch-dynamic.js"></script>

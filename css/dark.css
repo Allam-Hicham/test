@@ -1,0 +1,32 @@
+div.top_page,#scroll_to_top,div.top_page_watch{
+    background-color: black;
+}
+.section_title,.episodes,.card-title,.description_left,.user_name,.caption{
+    background-color: black;
+    opacity: 1;
+}
+.grid_images,.anime_info,#episodes_grid,.anime_description,#anime_suggestion_grid,#about{
+    background-color: rgba(0, 0, 0,0.5);
+
+}
+.separate,.comment,button#stretch{
+    background-color: rgb(161, 165, 193);
+}
+.anime_card:active,#anime-card-description{
+    border-color: rgba(0, 0, 0, alpha);
+}
+#watch-now{
+    background-color: rgb(20, 182, 47);
+}
+.episodes{
+    background-color: aliceblue;
+    color: black;
+}
+.episodes:hover{
+    border-width: 1.9px;
+    color: black;
+}
+img.social:active{
+    transition: 50ms;
+    border: solid 4px  rgb(161, 165, 193);
+}

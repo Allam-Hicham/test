@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="keywords" content="Anime,anime,harbane,harbane,ANIME HARBANE">
+    <meta name="description" content="watching anime online web page">
+    <meta name="author" content="anime harbane">
+    <meta http-equiv="refresh" content="3600;" />
+    <meta name="viewport" content="width=device-width, user-scalable=yes, initial-scale=1.0">
+    <title>anime harbane</title>
+    <link rel="shortcut icon" href="images/logo/Background.jpg" type="image/x-icon"/>
+    <link rel="stylesheet" href="css/main.css">
+    <link id="my_style" rel="stylesheet" href="css/blue.css">
+    <link rel="stylesheet" href="css/Moving Text.css">
+    <link rel="stylesheet" href="css/about.css">
+
+    <!-- adcash 
+    <script id="aclib" type="text/javascript" src="//acscdn.com/script/aclib.js"></script>
+    <script type="text/javascript">
+    aclib.runAutoTag({
+        zoneId: 'nqrpq8dtvi',
+    });
+    </script>
+
+    
+    <meta name="google-adsense-account" content="ca-pub-1143715613968322">
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-YVHSG413QM"></script>
+    <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-YVHSG413QM');
+    </script>
+    -->
+</head>
+<body>
+    
+    <!-- head page-->
+    <div class="top_page">
+        <p id="text-mode">blue</p>
+        <img id="my-image-mode" style="height:36px" src="images/page_color/blue_imogie.png" title="click to change page color">
+        <div>
+            <img id="logo" src="images/logo/Background.jpg" title="anime harbane logo">
+            <div style="display: inline-block;">
+                <p id="animeharbane">ANIME HARBANE</p>
+                <p style="font-size: 8px;margin: 5px;"> anime for everyone</p>
+            </div>
+        </div>
+        <div>
+            <input type="search" id="searchTerm" oninput="document.getElementById('results').innerHTML=''" onchange="search()" required placeholder="Search..">
+            <button id="search-button" onclick="search()">&#128270;</button>
+            <div id="results"></div>
+        </div>
+        <div id="music-grid">
+            <div class="marquee-container">
+                <div id="marquee"></div>
+            </div>                     <!-- ACN_Music_The_Raising_Fighting_Spirit.mp3 -->
+            <audio id="myAudio" src="music/ptasinski-RJ-Pasin-listeria.mp3" preload="auto" onended="stopMusic()"></audio>
+            <button id="playAudio" style="max-height: 40px;" title="play a song">Play</button>
+        </div>
+    </div>
+    <div class="anounce-container">
+        <div id="anounce">هذه النسخة قيد التطوير قد تعانون من بعد المشاكل أثناء التصفح، ستكون الصفحة جاهزة كليا عما قريب</div>
+    </div>
+    
+    <!-- reload all-->
+    <div id="spinner_container">
+        <div class="spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+    </div>
+    
+    <!-- gallery -->
+    <p class="section_title" style="padding-top: 8px;height: 40px;">Watch Now Last Available Anime</p>
+    <div class="container">
+        <div class="mySlides">
+            <a href="#go_to_description" onclick="getAnimeCard('Solo Leveling', '8.3', 'statu', 'imageUrl', 'AKfycby-7zRBNIrGpBwex0epTln541SRl8K9KB2V9uAsioe9eg8fdd9rqOptvBpBpftJ3llS7w')">
+                <img src="images/gallery/solo_leveling.jpg"  style="width: 100%;">
+            </a>
+        </div>
+        <div class="mySlides">
+            <a href="#go_to_description" onclick="getAnimeCard('One Piece', 'rate', 'statu', 'imageUrl', 'AKfycby-7zRBNIrGpBwex0epTln541SRl8K9KB2V9uAsioe9eg8fdd9rqOptvBpBpftJ3llS7w')">
+                <img src="images/gallery/one_piece.jpg" style="width: 100%;">
+            </a>
+        </div>
+        <div class="mySlides">
+            <a href="#go_to_description" onclick="getAnimeCard('Violet Evergarden', 'rate', 'statu', 'imageUrl', 'AKfycby-7zRBNIrGpBwex0epTln541SRl8K9KB2V9uAsioe9eg8fdd9rqOptvBpBpftJ3llS7w')">
+                <img src="images/gallery/violet_evergarden.jpg" style="width: 100%;">
+            </a>
+        </div>
+        <div class="mySlides">
+            <a href="#go_to_description" onclick="getAnimeCard('Death Note', 'rate', 'statu', 'imageUrl', 'AKfycby-7zRBNIrGpBwex0epTln541SRl8K9KB2V9uAsioe9eg8fdd9rqOptvBpBpftJ3llS7w')">
+                <img src="images/gallery/death_note.jpg" style="width: 100%;">
+            </a>
+        </div>
+        <div class="mySlides">
+            <a href="#go_to_description" onclick="getAnimeCard('Vinland Saga S1', 'rate', 'statu', 'imageUrl', 'AKfycby-7zRBNIrGpBwex0epTln541SRl8K9KB2V9uAsioe9eg8fdd9rqOptvBpBpftJ3llS7w')">
+                <img src="images/gallery/viland_saga.jpg" style="width: 100%;">
+            </a>
+        </div>
+        <div class="mySlides">
+            <a href="#go_to_description" onclick="getAnimeCard('Wind Breaker S1', 'rate', 'statu', 'imageUrl', 'AKfycby-7zRBNIrGpBwex0epTln541SRl8K9KB2V9uAsioe9eg8fdd9rqOptvBpBpftJ3llS7w')">
+                <img src="images/gallery/wind_breaker.jpg" style="width: 100%;">
+            </a>
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+        <div class="row">
+            <div></div>
+            <div class="demo" onclick="currentSlide(1)"></div>
+            <div class="demo" onclick="currentSlide(2)"></div>
+            <div class="demo" onclick="currentSlide(3)"></div>
+            <div class="demo" onclick="currentSlide(4)"></div>
+            <div class="demo" onclick="currentSlide(5)"></div>
+            <div class="demo" onclick="currentSlide(6)"></div>
+            <div></div>
+        </div>
+    </div>
+    <!-- anime description -->
+    <div id="description"></div>
+    <div id="phone-container" style="background-color:rgba(16, 239, 16, 0.265);"></div>
+    <!-- anime suggestion -->
+    <div class="separate"></div>
+    <p class="section_title">anime suggestion</p>
+    <!-- load card-->
+    <div id="spinner_cards" style="height: 120px; display: none;">
+        <div class="spinner">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <div id="anime_suggestion_grid"></div>
+    <!-- get comments -->
+    <div class="separate"></div>
+    <button id="comments-get">get comments</button>
+    <!-- comments -->
+    <div id="comments-container" style="display: none;">
+        <div class="separate"></div>
+        <p class="section_title">Comments: <span id="comment-title"></span></p>
+        <div id="comments">
+        <form id="dataFormComments">
+            <label for="name"></label>
+            <input type="text" id="name" name="name" placeholder="name*" maxlength="40" required>
+            <label for="email"></label>
+            <input type="email" id="email" name="email" placeholder="Email">
+            <button type="submit" id="submit-comment" >Submit</button>
+            <br>
+            <input type="text" id="comment" name="comment" placeholder="drop your comment here*" maxlength="800" required>
+            <div id="response" style="height: 18px;color:greenyellow;padding-top: 3px;"></div>
+        </form>
+        <div id="responseComments"></div>
+        </div>
+    </div>
+    <div id="scroll_to_top" onclick="scroll_to_top()">↑</div>
+    <div id="scroll_to_top" style="left: 96%;" onclick="scroll_to_top()">↑</div>
+    <!-- about -->
+    <div id="about">
+        <p id="about-title">About Us</p>
+        <div class="social">
+            <div></div>
+            <a href="https://www.facebook.com/people/Anime-Harbane/61555506476548/" target="_blank">
+                <img class="social" src="images/logo/facebook.jpg" alt="facebook">
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+                <img class="social" src="images/logo/instagram.jpg" alt="instagram">
+            </a>
+            <a href="https://www.tiktok.com/@anime.harbane?_t=8oVCu7TonG2&_r=1" target="_blank">
+                <img class="social" src="images/logo/tiktok.jpg" alt="tiktok">
+            </a>
+            <div></div>
+        </div>
+        <div style="padding-bottom: 5px;width: 100%;background-color: black;color: aliceblue;text-align: center;">
+            <div style="background-color: #000000;color: #ffffff;padding: 8px 34%; font-size: 14px;">
+                <a href="https://animeharbane.com" style="color: #099acb;padding-left: 10px;">Home</a>
+                <a href="https://animeharbane.com/about/terms-of-services.html" style="color: #ffffff;padding-left: 10px;">Terms Of Service</a>
+                <a href="https://animeharbane.com/about/privacy-policy.html" style="color: #ffffff;padding-left: 10px;">Privacy Policy</a>
+              </div>
+            <p style="font-family: Söhne, sans-serif;">all rigth are reserved copyright &copy; 2024 animeharbane.</p>
+        </div>
+    </div>
+</body>
+</html>
+
+<!--  this is all script -->
+  <script src="js/style.js"></script>
+  <script src="js/home.js"></script>
+  <script src="js/home-dynamic.js"></script>
+  <script src="js/search.js"></script>
+  <!-- <script src="https://www.google.com/recaptcha/api.js"></script>-->
