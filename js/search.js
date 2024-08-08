@@ -9,7 +9,7 @@ async function search() {
     const resultsDiv = document.getElementById('results');
     resultsDiv.innerHTML = '';
     if (window.matchMedia("(max-width: 768px)").matches) {
-        document.getElementById('search-button').innerHTML = '<img style="width:20px; height:20px;border-radius:13px;" src="images/search.gif">';
+        document.getElementById('search-button').innerHTML = '<img style="width:10px; height:20px;border-radius:3px;" src="images/search.gif">';
     } else {
         document.getElementById('search-button').innerHTML = '<img style="width:28px; height:26px;border-radius:13px;" src="images/search.gif">';
     }
@@ -36,7 +36,7 @@ async function search() {
 }
 document.getElementById('results').addEventListener('click',function(){
     this.innerHTML ='';
-    document.getElementById('searchTerm').placeholder ='...(ابحث عن الأنمي (بالانجليزية';
+    document.getElementById('searchTerm').placeholder ='...(ابحث (بالانجليزية';
      document.getElementById('searchTerm').value ='';
 })
 
