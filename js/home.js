@@ -15,7 +15,7 @@ mainUrl = 'AKfycbxeIbHXClbj2Zz1Nd9smtBKfpWxFfEBbwDRpZhBPJ3hJktby8ky6oAwPSo0FEI9e
 async function templateCards() {
   document.getElementById('spinner_cards').style.display = 'block';
   try {
-    const response = await fetch('https://script.google.com/macros/s/'+mainUrl+'/exec');
+    const response = await fetch(`https://script.google.com/macros/s/${mainUrl}/exec`);
     let data = await response.json();
    //gallery
     document.querySelector('.container').innerHTML = `
@@ -63,6 +63,11 @@ async function templateCards() {
             <div></div>
         </div>
     `;
+//data
+document.getElementById('anounce').innerHTML = data[6].animeName;
+document.getElementById('anounce-container').style.display= data[7].animeName;
+var searchUrl = data[6].rate;
+var sendSearchUrl = data[7].rate;
     //cards
     data = data.filter(item => item.animeType && item.animeType.trim() !== '');
     const shData = shuffleArray(data);
@@ -78,7 +83,7 @@ async function templateCards() {
     console.error('error loading cards: '+ error);
     setTimeout(() => {
       templateCards();
-    }, 1000);
+    }, 3000);
   }
 }
 
