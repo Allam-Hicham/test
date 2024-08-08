@@ -1,5 +1,3 @@
-const searchUrl = 'https://script.google.com/macros/s/AKfycbyXBfVlaGcOk3YoJKpvJGH1Y70d0fCYkpXe3E-gEWyL6cbSSY3OBrfHajoa5t-LkSN1oQ/exec'
-const sendSearchUrl = 'https://script.google.com/macros/s/AKfycbyhFsBMP5hWiC3_RDgmUle1pXrL2Y8UxFm1Klh_ak0Yf_tncCIL_dJJaEkDuEs7GaMZKA/exec';
 
 async function search() {
     const searchTerm = document.getElementById('searchTerm').value;
