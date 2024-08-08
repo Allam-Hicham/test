@@ -22,11 +22,25 @@ function epShow(animeName, epHash, n, player) {
       `;
     } else {
       document.getElementById('videoPlayer').innerHTML = `
-        <iframe width="100%" style="justify-content: center;" height="100%" src="//videa.hu/player?v=${epHash}"
+        <iframe id="myVideo" width="100%" style="justify-content: center;" height="100%" src="//videa.hu/player?v=${epHash}"
         allowfullscreen="allowfullscreen" webkitallowfullscreen="webkitallowfullscreen"
         mozallowfullscreen="mozallowfullscreen" frameborder="0"></iframe>
-      `; 
-    }
+      `;
+        const iframe = document.getElementById('myVideo');
+        // Inject script to block window.open
+        iframe.onload = function() {
+             const iframeDoc = iframe.contentDocument || iframe.contentWindow.document;
+             const script = iframeDoc.createElement('script');
+             script.innerHTML = `
+                  (function() {
+                      window.open = function() {
+                      console.log('Blocked attempt to open a new window or tab.');
+                    };
+             })();
+             `;
+             iframeDoc.head.appendChild(script);
+            };
+    }  
     document.getElementById('ep_target').scrollIntoView({ behavior: 'smooth' });
     fetch('https://script.google.com/macros/s/AKfycbwAAS33Q0OFUHIsJIFOy09z6yKLwqE1Fj5t-z2yU-3DFu8-RBzuDzYDwFxFV2Qt0ptr2A/exec');
     setInterval(() => document.getElementById('spinner_container').style.display = 'none',1000);
