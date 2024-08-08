@@ -3,10 +3,17 @@ const sendSearchUrl = 'https://script.google.com/macros/s/AKfycbyhFsBMP5hWiC3_RD
 
 async function search() {
     const searchTerm = document.getElementById('searchTerm').value;
+    if (searchTerm === ''){
+        return;
+    }
     const resultsDiv = document.getElementById('results');
     resultsDiv.innerHTML = '';
-    document.getElementById('search-button').innerHTML = '<img style="width:28px; height:26px;border-radius:13px;" src="images/search.gif">';
-    const response = await fetch(searchUrl+'?term='+encodeURIComponent(searchTerm));
+    if (window.matchMedia("(max-width: 768px)").matches) {
+        document.getElementById('search-button').innerHTML = '<img style="width:20px; height:20px;border-radius:13px;" src="images/search.gif">';
+    } else {
+        document.getElementById('search-button').innerHTML = '<img style="width:28px; height:26px;border-radius:13px;" src="images/search.gif">';
+    }
+    const response = await fetch(`${searchUrl}?term=${encodeURIComponent(searchTerm)}`);
     const results = await response.json();
     document.getElementById('search-button').innerHTML = '&#128270;';
     if (results.length === 0) {
@@ -24,10 +31,13 @@ async function search() {
                                 <p class="search" onclick="document.getElementById('searchTerm').value ='';">Cancel</p>`
                                  +resultsDiv.innerHTML;
         searchStat(searchTerm,'found');
+        searchTerm = '';
     }
 }
 document.getElementById('results').addEventListener('click',function(){
     this.innerHTML ='';
+    document.getElementById('searchTerm').placeholder ='...(ابحث عن الأنمي (بالانجليزية';
+     document.getElementById('searchTerm').value ='';
 })
 
 
