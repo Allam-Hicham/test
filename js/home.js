@@ -65,7 +65,7 @@ async function templateCards() {
     `;
 //data
 document.getElementById('anounce').innerHTML = data[6].animeName;
-document.getElementById('anounce-container').style.display= data[7].animeName;
+document.querySelector('.anounce-container').style.display= data[7].animeName;
 var searchUrl = data[6].rate;
 var sendSearchUrl = data[7].rate;
     //cards
