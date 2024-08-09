@@ -12,6 +12,8 @@ function shuffleArray(array) {
 }
 
 mainUrl = 'AKfycbxeIbHXClbj2Zz1Nd9smtBKfpWxFfEBbwDRpZhBPJ3hJktby8ky6oAwPSo0FEI9e51d';
+var searchUrl;
+var sendSearchUrl;
 async function templateCards() {
   document.getElementById('spinner_cards').style.display = 'block';
   try {
