@@ -5,13 +5,17 @@ var data2;
 var commentUrl;
 var commentTitle;
 const animeEntry;
+var suffix;
 
 async function getAnimeCard() {
   const animeEntry0 = JSON.parse(localStorage.getItem('animeEntry0'));
+  console.log(animeEntry0);
   const rate = animeEntry0[0];
   const statu = animeEntry0[1];
   const imageUrl = animeEntry0[2];
+  suffix = animeEntry0[3];
 animeEntry = JSON.parse(localStorage.getItem('animeEntry'));
+  console.log(animeEntry);
   document.title = animeEntry.animeName;
   //(animeEntry);
   const contentDiv = document.getElementById('description');
@@ -106,7 +110,7 @@ async function getEpisodes(animeName, epsHash) {
   try {
       document.getElementById('episodes-container').style.display = 'block';
       document.getElementById('episodes_grid').innerHTML = `<p style="position: absolute; top: 5px">Loading . . .</p> `;
-      const response = await fetch(`https://script.google.com/macros/s/${epsHash}/exec?term=${encodeURIComponent(animeName)}&action=getData`);
+      const response = await fetch(`https://script.google.com/macros/s/${epsHash}/exec?term=${encodeURIComponent(suffix)}&action=getData`);
       data2 = await response.json();
       const filteredData = data2.filter(item => item.epNumb !== null && item.epNumb !== '');
       const contentDiv = document.getElementById('episodes_grid');
@@ -129,7 +133,7 @@ async function getComments(index){
   document.getElementById('responseComments').innerHTML = `<p style="text-align:center;font-size:18px;background-color:red;">Loading...⏳</p> `;
   if (index == 1) {
     try {
-      const response = await fetch(`https://script.google.com/macros/s/${commentUrl}/exec?term=${encodeURIComponent(animeEntry.animeName)}&action=getData`);
+      const response = await fetch(`https://script.google.com/macros/s/${commentUrl}/exec?term=${encodeURIComponent(suffix)}&action=getData`);
       data2 = await response.json();
     } catch (error) {
       console.error('comment error: ' + error);
@@ -194,8 +198,7 @@ document.getElementById('dataFormComments').addEventListener('submit', async fun
     params.append(pair[0], pair[1]);
     }
     document.getElementById('response').textContent = 'wait...';
-    fetch(`https://script.google.com/macros/s/' 
-{commentUrl}/exec?term=${encodeURIComponent(animeEntry.animeName)}`, {
+    fetch(`https://script.google.com/macros/s/${commentUrl}/exec?term=${encodeURIComponent(suffix)}`, {
     method: 'POST',
     body: params,
     })
