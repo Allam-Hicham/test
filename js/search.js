@@ -21,7 +21,7 @@ async function search() {
     } else {
         resultsDiv.innerHTML = results.map((item) => `
             <img width="100%" height="26px" src="${item.data[4]}">
-            <p class="search"  onclick="getAnimeCard('${item.data[0]}', '${item.data[1]}', '${item.data[2]}', '${item.data[4]}', '${item.data[5]}')" >
+            <p class="search"  onclick="getAnimeCard('${item.data[0]}', '${item.data[1]}', '${item.data[2]}', '${item.data[4]}', '${item.data[5]}', '${item.data[7]}', '${item.data[8]}', '${item.data[9]}'" >
             ${item.data[0]} &middot; ${item.data[1]}⭐ ${item.data[2]}
               </p>`
         ).join('');
