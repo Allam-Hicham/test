@@ -101,6 +101,7 @@ async function getAnimeCard(animeName, rate, statu, imageUrl, Hash, suffix, anim
         throw new Error(`HTTP error! Status: ${response.status}`);
       }     
       const animeEntry = await response.json();
+      console.log(animeEntry);
       const contentDiv = document.getElementById('description');
       if (window.matchMedia("(max-width: 768px)").matches) {
         contentDiv.innerHTML = `
