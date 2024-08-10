@@ -106,7 +106,7 @@ async function getEpisodes(animeName, epsHash) {
   try {
       document.getElementById('episodes-container').style.display = 'block';
       document.getElementById('episodes_grid').innerHTML = `<p style="position: absolute; top: 5px">Loading . . .</p> `;
-      const response = await fetch(`https://script.google.com/macros/s/${epsHash}/exec?term=${animeName}&action=getData`);
+      const response = await fetch(`https://script.google.com/macros/s/${epsHash}/exec?term=${encodeURIComponent(animeName)}&action=getData`);
       data2 = await response.json();
       const filteredData = data2.filter(item => item.epNumb !== null && item.epNumb !== '');
       const contentDiv = document.getElementById('episodes_grid');
@@ -129,7 +129,7 @@ async function getComments(index){
   document.getElementById('responseComments').innerHTML = `<p style="text-align:center;font-size:18px;background-color:red;">Loading...⏳</p> `;
   if (index == 1) {
     try {
-      const response = await fetch(`https://script.google.com/macros/s/${commentUrl}/exec?term=${animeEntry.animeName}&action=getData`);
+      const response = await fetch(`https://script.google.com/macros/s/${commentUrl}/exec?term=${encodeURIComponent(animeEntry.animeName)}&action=getData`);
       data2 = await response.json();
     } catch (error) {
       console.error('comment error: ' + error);
@@ -195,7 +195,7 @@ document.getElementById('dataFormComments').addEventListener('submit', async fun
     }
     document.getElementById('response').textContent = 'wait...';
     fetch(`https://script.google.com/macros/s/' 
-{commentUrl}/exec?term=${animeEntry.animeName}`, {
+{commentUrl}/exec?term=${encodeURIComponent(animeEntry.animeName)}`, {
     method: 'POST',
     body: params,
     })
