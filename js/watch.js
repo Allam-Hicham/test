@@ -4,7 +4,7 @@ window.onload = function () {
 var data2;
 var commentUrl;
 var commentTitle;
-const animeEntry;
+var animeEntry;
 var suffix;
 
 async function getAnimeCard() {
