@@ -81,6 +81,7 @@ sendSearchUrl = data[7].rate;
       </a>
     `).join('');
     document.getElementById('spinner_cards').style.display = 'none';
+    document.getElementById('Loading').style.display = 'none';
   } catch (error) {
     console.error('error loading cards: '+ error);
     setTimeout(() => {
