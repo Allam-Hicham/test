@@ -15,7 +15,6 @@ mainUrl = 'AKfycbwfAWA6P_foZey8vmlGgt1qecP8Oh1aeTqfF3ZY35JEzsYZ6g9Kekt8aD7JMg-0H
 var searchUrl;
 var sendSearchUrl;
 async function templateCards() {
-  document.getElementById('spinner_cards').style.display = 'block';
   try {
     const response = await fetch(`https://script.google.com/macros/s/${mainUrl}/exec`);
     let data = await response.json();
@@ -66,11 +65,11 @@ async function templateCards() {
         </div>
     `;
 //data
-document.getElementById('anounce').innerHTML = data[6].animeName;
-document.querySelector('.anounce-container').style.display= data[7].animeName;
-searchUrl = data[6].rate;
-sendSearchUrl = data[7].rate;
-    //cards
+    document.getElementById('anounce').innerHTML = data[6].animeName;
+    document.querySelector('.anounce-container').style.display= data[7].animeName;
+    searchUrl = data[6].rate;
+    sendSearchUrl = data[7].rate;
+//cards
     data = data.filter(item => item.animeType && item.animeType.trim() !== '');
     const shData = shuffleArray(data);
     document.getElementById('anime_suggestion_grid').innerHTML = shData.map((item,Id) => `
@@ -80,7 +79,6 @@ sendSearchUrl = data[7].rate;
         <p class="card-rate">${item.rate}⭐ | ${item.statut} </p>
       </a>
     `).join('');
-    document.getElementById('spinner_cards').style.display = 'none';
     document.getElementById('Loading').style.display = 'none';
   } catch (error) {
     console.error('error loading cards: '+ error);
