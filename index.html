@@ -60,9 +60,8 @@
         </div>
     </div>
     <div class="anounce-container">
-        <div id="anounce">هذه النسخة قيد التطوير قد تعانون من بعد المشاكل أثناء التصفح، ستكون الصفحة جاهزة كليا عما قريب</div>
+        <div id="anounce"></div>
     </div>
-    
     <!-- reload all-->
     <div id="spinner_container">
         <div class="spinner">
@@ -83,51 +82,7 @@
     
     <!-- gallery -->
     <p class="section_title" style="padding-top: 8px;height: 40px;">Watch Now Last Available Anime</p>
-    <div class="container">
-        <div class="mySlides">
-            <a href="#go_to_description" onclick="getAnimeCard('Solo Leveling', '8.3', 'statu', 'imageUrl', 'AKfycby-7zRBNIrGpBwex0epTln541SRl8K9KB2V9uAsioe9eg8fdd9rqOptvBpBpftJ3llS7w')">
-                <img src="images/gallery/solo_leveling.jpg"  style="width: 100%;">
-            </a>
-        </div>
-        <div class="mySlides">
-            <a href="#go_to_description" onclick="getAnimeCard('One Piece', 'rate', 'statu', 'imageUrl', 'AKfycby-7zRBNIrGpBwex0epTln541SRl8K9KB2V9uAsioe9eg8fdd9rqOptvBpBpftJ3llS7w')">
-                <img src="images/gallery/one_piece.jpg" style="width: 100%;">
-            </a>
-        </div>
-        <div class="mySlides">
-            <a href="#go_to_description" onclick="getAnimeCard('Violet Evergarden', 'rate', 'statu', 'imageUrl', 'AKfycby-7zRBNIrGpBwex0epTln541SRl8K9KB2V9uAsioe9eg8fdd9rqOptvBpBpftJ3llS7w')">
-                <img src="images/gallery/violet_evergarden.jpg" style="width: 100%;">
-            </a>
-        </div>
-        <div class="mySlides">
-            <a href="#go_to_description" onclick="getAnimeCard('Death Note', 'rate', 'statu', 'imageUrl', 'AKfycby-7zRBNIrGpBwex0epTln541SRl8K9KB2V9uAsioe9eg8fdd9rqOptvBpBpftJ3llS7w')">
-                <img src="images/gallery/death_note.jpg" style="width: 100%;">
-            </a>
-        </div>
-        <div class="mySlides">
-            <a href="#go_to_description" onclick="getAnimeCard('Vinland Saga S1', 'rate', 'statu', 'imageUrl', 'AKfycby-7zRBNIrGpBwex0epTln541SRl8K9KB2V9uAsioe9eg8fdd9rqOptvBpBpftJ3llS7w')">
-                <img src="images/gallery/viland_saga.jpg" style="width: 100%;">
-            </a>
-        </div>
-        <div class="mySlides">
-            <a href="#go_to_description" onclick="getAnimeCard('Wind Breaker S1', 'rate', 'statu', 'imageUrl', 'AKfycby-7zRBNIrGpBwex0epTln541SRl8K9KB2V9uAsioe9eg8fdd9rqOptvBpBpftJ3llS7w')">
-                <img src="images/gallery/wind_breaker.jpg" style="width: 100%;">
-            </a>
-        </div>
-        <a class="prev" onclick="plusSlides(-1)">❮</a>
-        <a class="next" onclick="plusSlides(1)">❯</a>
-
-        <div class="row">
-            <div></div>
-            <div class="demo" onclick="currentSlide(1)"></div>
-            <div class="demo" onclick="currentSlide(2)"></div>
-            <div class="demo" onclick="currentSlide(3)"></div>
-            <div class="demo" onclick="currentSlide(4)"></div>
-            <div class="demo" onclick="currentSlide(5)"></div>
-            <div class="demo" onclick="currentSlide(6)"></div>
-            <div></div>
-        </div>
-    </div>
+    <div class="container"></div>
     <!-- anime description -->
     <div id="description"></div>
     <div id="phone-container" style="background-color:rgba(16, 239, 16, 0.265);"></div>
@@ -151,12 +106,12 @@
         <div id="comments">
         <form id="dataFormComments">
             <label for="name"></label>
-            <input type="text" id="name" name="name" placeholder="name*" maxlength="40" required>
+            <input type="text" id="name" name="name" placeholder="الاسم*" maxlength="40" required>
             <label for="email"></label>
             <input type="email" id="email" name="email" placeholder="Email">
             <button type="submit" id="submit-comment" >Submit</button>
             <br>
-            <input type="text" id="comment" name="comment" placeholder="drop your comment here*" maxlength="800" required>
+            <input type="text" id="comment" name="comment" placeholder="اكتب تعليقك هنا*" maxlength="800" required>
             <div id="response" style="height: 18px;color:greenyellow;padding-top: 3px;"></div>
         </form>
         <div id="responseComments"></div>
