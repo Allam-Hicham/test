@@ -82,7 +82,51 @@
     
     <!-- gallery -->
     <p class="section_title" style="padding-top: 8px;height: 40px;">Watch Now Last Available Anime</p>
-    <div class="container"></div>
+    <div class="container">
+        <div class="mySlides" style="display: none;">/
+            <a onclick="getAnimeCard('One Piece', '8.7', 'مستمر ', 'https://cdn.myanimelist.net/images/anime/1244/138851.jpg', 'AKfycbx1gQ6M9iV450N9NQu5lbMxIfsaBpJJnywoBjhY3R6hEwJsL9zZU1xxGUpWaG8krWpldQ','anime', 'jp', 'ar')">
+                <img src="https://i.imghippo.com/files/7QTdG1724416193.jpg" style="width: 100%;">
+            </a>
+        </div>
+        <div class="mySlides" style="display: none;">/
+            <a onclick="getAnimeCard('Demon Slayer S1', '8.4', 'مكتمل', 'https://cdn.myanimelist.net/images/anime/1286/99889.jpg', 'AKfycbx1gQ6M9iV450N9NQu5lbMxIfsaBpJJnywoBjhY3R6hEwJsL9zZU1xxGUpWaG8krWpldQ', 's1', 'jp', 'ar')">
+                <img src="https://i.imghippo.com/files/W7dCc1724416143.jpg" style="width: 100%;">
+            </a>
+        </div>
+        <div class="mySlides" style="display: none;">/
+            <a onclick="getAnimeCard('Solo Leveling', '8.3', 'مكتمل', 'https://cdn.myanimelist.net/images/anime/1801/142390.jpg', 'AKfycbx1gQ6M9iV450N9NQu5lbMxIfsaBpJJnywoBjhY3R6hEwJsL9zZU1xxGUpWaG8krWpldQ', 's1', 'jp', 'ar')">
+                <img src="https://i.imghippo.com/files/9vTzL1724416217.jpg" style="width: 100%;">
+            </a>
+        </div>
+        <div class="mySlides" style="display: none;">/
+            <a onclick="getAnimeCard('Violet Evergarden', '8.6', 'مكتمل', 'https://cdn.myanimelist.net/images/anime/1795/95088.jpg', 'AKfycbx1gQ6M9iV450N9NQu5lbMxIfsaBpJJnywoBjhY3R6hEwJsL9zZU1xxGUpWaG8krWpldQ', 'anime', 'jp', 'ar')">
+                <img src="https://i.imghippo.com/files/tqXZX1724416245.jpg" style="width: 100%;">
+            </a>
+        </div>
+        <div class="mySlides" style="display: none;">/
+            <a onclick="getAnimeCard('Vinland Saga S1', '8.7', 'مكتمل', 'https://cdn.myanimelist.net/images/anime/1500/103005.jpg', 'AKfycbx1gQ6M9iV450N9NQu5lbMxIfsaBpJJnywoBjhY3R6hEwJsL9zZU1xxGUpWaG8krWpldQ', 's1', 'jp', 'ar')">
+                <img src="https://i.imghippo.com/files/Konsj1724416281.jpg" style="width: 100%;">
+            </a>
+        </div>
+        <div class="mySlides" style="display: block;">/
+            <a onclick="getAnimeCard('Death Note', '8.6', 'مكتمل', 'https://cdn.myanimelist.net/images/anime/1079/138100.jpg', 'AKfycbx1gQ6M9iV450N9NQu5lbMxIfsaBpJJnywoBjhY3R6hEwJsL9zZU1xxGUpWaG8krWpldQ', 'anime', 'jp', 'ar')">
+                <img src="https://i.imghippo.com/files/eG08D1724416351.jpg" style="width: 100%;">
+            </a>
+        </div>
+        <a class="prev" onclick="plusSlides(-1)">❮</a>
+        <a class="next" onclick="plusSlides(1)">❯</a>
+
+        <div class="row">
+            <div></div>
+            <div class="demo" onclick="currentSlide(1)"></div>
+            <div class="demo" onclick="currentSlide(2)"></div>
+            <div class="demo" onclick="currentSlide(3)"></div>
+            <div class="demo" onclick="currentSlide(4)"></div>
+            <div class="demo" onclick="currentSlide(5)"></div>
+            <div class="demo active" onclick="currentSlide(6)"></div>
+            <div></div>
+        </div>
+    </div>
     <!-- anime description -->
     <div id="description"></div>
     <div id="phone-container" style="background-color:rgba(16, 239, 16, 0.265);"></div>
