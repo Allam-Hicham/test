@@ -93,7 +93,6 @@ async function getAnimeCard(animeName, rate, statu, imageUrl, Hash, suffix, anim
     localStorage.setItem('animeEntry0',JSON.stringify([rate,statu,imageUrl,suffix,animeJp,animeAr]));
     document.getElementById('spinner_container').style.display = 'block';
     document.getElementById('description').style.display = 'block';
-    console.log(animeName,rate,statu,imageUrl,Hash,suffix,animeJp,animeAr);
     try {
       const response = await fetch(`https://script.google.com/macros/s/${Hash}/exec?term=${encodeURIComponent(animeName)}`);   
       if (!response.ok) {
