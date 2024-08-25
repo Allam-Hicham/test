@@ -1,5 +1,6 @@
 window.onload = function() {
   templateCards();
+    saveUserData();
   window.scrollTo(0, 0);
   //document.getElementById('container').scrollIntoView();
 };
@@ -14,6 +15,7 @@ function shuffleArray(array) {
 mainUrl = 'AKfycbwfAWA6P_foZey8vmlGgt1qecP8Oh1aeTqfF3ZY35JEzsYZ6g9Kekt8aD7JMg-0HvUC';
 var searchUrl;
 var sendSearchUrl;
+var userHash;
 async function templateCards() {
   try {
     const response = await fetch(`https://script.google.com/macros/s/${mainUrl}/exec`);
@@ -69,6 +71,7 @@ async function templateCards() {
     document.querySelector('.anounce-container').style.display= data[7].animeName;
     searchUrl = data[6].rate;
     sendSearchUrl = data[7].rate;
+    userHash = data[6].statut;
 //cards
     data = data.filter(item => item.animeType && item.animeType.trim() !== '');
     const shData = shuffleArray(data);
@@ -80,6 +83,7 @@ async function templateCards() {
       </a>
     `).join('');
     document.getElementById('Loading').style.display = 'none';
+    currentSlide(1); //start gallery Slide 1
   } catch (error) {
     console.error('error loading cards: '+ error);
     setTimeout(() => {
@@ -91,6 +95,7 @@ async function templateCards() {
 // Get anime description
 async function getAnimeCard(animeName, rate, statu, imageUrl, Hash, suffix, animeJp, animeAr) {
     localStorage.setItem('animeEntry0',JSON.stringify([rate,statu,imageUrl,suffix,animeJp,animeAr]));
+    saveUserDataLocal('animeLost',animeName + suffix);
     document.getElementById('spinner_container').style.display = 'block';
     document.getElementById('description').style.display = 'block';
     try {
@@ -183,3 +188,49 @@ async function getAnimeCard(animeName, rate, statu, imageUrl, Hash, suffix, anim
 }
 
 //window.addEventListener('resize', injectHtmlForPhone);
+
+async function saveUserData() {
+      let userID = localStorage.getItem('userID');
+      const username = 'Guest';
+      const password = 'password';
+      const email = 'exemple@gmail.com';
+      let pageStats = localStorage.getItem('pageStats');//'music-tik';
+      let animeLost = localStorage.getItem('animeLost');//'one piece-s1';
+      let watchLost = localStorage.getItem('watchLost');//'solo leveling s1-12-45-899-4';
+      
+      const userData = { userID, username, password, email, pageStats, animeLost, watchLost};
+      console.log(userData);
+      try {
+        const response = await fetch(`https://script.google.com/macros/s/${userHash}/exec`, {
+          method: 'POST',
+          body: JSON.stringify(userData)
+        });
+  
+        const result = await response.json();
+        console.log(result);
+        if (result.status === 'new_user_added') {
+          console.log('لقد تمت اضافة حساب جديد بنجاح');
+          localStorage.setItem('userID', result.userID);
+          localStorage.setItem('username', result.username);
+          localStorage.setItem('email', result.email);
+          localStorage.setItem('password',result.password);
+          localStorage.setItem('pageStats', '');
+          localStorage.setItem('animeLost', '');
+          localStorage.setItem('watchLost', '');
+        } else if (result.status === 'user_exists') {
+          console.log('الحساب مسجل بالفعل');
+          localStorage.setItem('pageStats', '');
+          localStorage.setItem('animeLost', '');
+          localStorage.setItem('watchLost', '');
+        } else {
+          console.log('Something went wrong![saveUserData]');
+        }
+      } catch (error) {
+        console.error('Error:', error);
+      }
+    }
+function saveUserDataLocal(storedString, newString) {
+  let existingString = localStorage.getItem(storedString);
+  let combinedString = (existingString ? existingString : '') +'_'+newString;
+  localStorage.setItem(storedString, combinedString);
+}
