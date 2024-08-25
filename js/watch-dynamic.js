@@ -10,6 +10,7 @@ function scroll_to_top(){
 //show episode
 function epShow(animeName, epHash, n, player) {
     document.getElementById('spinner_container').style.display = 'block';
+    saveUserDataLocal('watchLost', n);
     if (player == 'mega') {
         document.getElementById('videoPlayer').innerHTML = `
             <div id="videoPlayerHead">
