@@ -17,6 +17,7 @@ async function getAnimeCard() {
 animeEntry = JSON.parse(localStorage.getItem('animeEntry'));
   console.log(animeEntry);
   document.title = animeEntry.animeName;
+  saveUserDataLocal('watchLost', animeEntry.animeName);
   //(animeEntry);
   const contentDiv = document.getElementById('description');
   if (window.matchMedia("(max-width: 768px)").matches) {
@@ -130,6 +131,7 @@ async function getEpisodes(animeName, epsHash) {
 
 //get comment
 async function getComments(index){
+  saveUserDataLocal('watchLost', 'comment');
   document.getElementById('responseComments').innerHTML = `<p style="text-align:center;font-size:18px;background-color:red;">Loading...⏳</p> `;
   if (index == 1) {
     try {
@@ -221,4 +223,10 @@ function escapeHtml(html) {
               .replace(/>/g, '&gt;')
               .replace(/"/g, '&quot;')
               .replace(/'/g, '&#039;');
+}
+
+function saveUserDataLocal(storedString, newString) {
+  let existingString = localStorage.getItem(storedString);
+  let combinedString = (existingString ? existingString : '') +'_'+newString;
+  localStorage.setItem(storedString, combinedString);
 }
