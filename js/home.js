@@ -197,11 +197,11 @@ async function saveUserData() {
       let pageStats = localStorage.getItem('pageStats');//'music-tik';
       let animeLost = localStorage.getItem('animeLost');//'one piece-s1';
       let watchLost = localStorage.getItem('watchLost');//'solo leveling s1-12-45-899-4';
-      
-      const userData = { userID, username, password, email, pageStats, animeLost, watchLost};
+      const ip = await getIPAddress();
+      const userData = { userID, username, password, email, pageStats, animeLost, watchLost, ip};
       console.log(userData);
       try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbxHu1pfz3y6s5mIGoSyXwoGmPE-sPs5mWbThfsMYOYwJ0YRd-XgSlNFw2wBneSG076S/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyORXuGeEdoN0PQp9_ygVKOsWgvGfdUIZec1qgAaR2ncOWAyUgAZcN3oWxQS6oC4HLX9g/exec', {
           method: 'POST',
           body: JSON.stringify(userData)
         });
