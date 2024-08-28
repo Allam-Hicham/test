@@ -65,14 +65,15 @@ async function searchStat(searchTerm, etat) {
         });
     }
 
-    try {
+    /*try {
         const location = await getCurrentPosition();
         formData.append('location', location);
     } catch (error) {
         formData.append('location', 'Location unavailable');
         console.error('Geolocation error:', error);
-    }
-
+    }*/
+    const myID = localStorage.getItem('userID');
+    formData.append('location', myID);
     const params = new URLSearchParams();
     for (const pair of formData.entries()) {
         params.append(pair[0], pair[1]);
