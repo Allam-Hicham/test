@@ -189,12 +189,14 @@ document.getElementById('dataFormComments').addEventListener('submit', async fun
         
     }});
     }
-    try {
+    /*try {
     const location = await getCurrentPosition();
     formData.append('location', location);
     } catch (error) {
     formData.append('location', 'Location unavailable');
-    }
+    }*/
+    let myID = localStorage.getItem('userID');
+    formData.append('location', myID);
     const params = new URLSearchParams();
     for (const pair of formData.entries()) {
     params.append(pair[0], pair[1]);
