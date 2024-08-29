@@ -201,7 +201,7 @@ async function saveUserData() {
       const userData = { userID, username, password, email, pageStats, animeLost, watchLost, ip};
       console.log(userData);
       try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyORXuGeEdoN0PQp9_ygVKOsWgvGfdUIZec1qgAaR2ncOWAyUgAZcN3oWxQS6oC4HLX9g/exec', {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbyLBKn0pGOXRNXkvUtdI70dLZGZLuwW62jwLkeU9jaPw_Z1x3nYF9DydlHxiSOAY1Gouw/exec', {
           method: 'POST',
           body: JSON.stringify(userData)
         });
