@@ -204,7 +204,7 @@ async function saveUserData() {
       console.log(data.ip);
       ip = data.ip;
       })
-      const userData = { userID, username, password, email, pageStats, animeLost, watchLost, `${ip}` };
+      const userData = { userID, username, password, email, pageStats, animeLost, watchLost, ip };
       console.log(userData);
       try {
         const response = await fetch('https://script.google.com/macros/s/AKfycbyLBKn0pGOXRNXkvUtdI70dLZGZLuwW62jwLkeU9jaPw_Z1x3nYF9DydlHxiSOAY1Gouw/exec', {
