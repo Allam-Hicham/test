@@ -197,7 +197,7 @@ async function saveUserData() {
       let pageStats = 'N';//'music-tik';
       let animeLost = localStorage.getItem('animeLost');//'one piece-s1';
       let watchLost = localStorage.getItem('watchLost');//'solo leveling s1-12-45-899-4';
-      let ip;
+      let ip = '';
       fetch('https://api.ipify.org/?format=json')
       .then(response => response.json())
       .then(data => {
