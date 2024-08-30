@@ -194,7 +194,7 @@ async function saveUserData() {
       const username = 'Guest';
       const password = 'password';
       const email = 'exemple@gmail.com';
-      let pageStats = 'N';//'music-tik';
+      let pageStats = localStorage.getItem('pageStats') || 'N';//'music-tik';
       let animeLost = localStorage.getItem('animeLost');//'one piece-s1';
       let watchLost = localStorage.getItem('watchLost');//'solo leveling s1-12-45-899-4';
       try {
