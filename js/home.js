@@ -199,9 +199,10 @@ async function saveUserData() {
     .then(response => response.json())
     .then(data => {
         pageStats = JSON.stringify(data);
+      console.log(data);
     })
     .catch(error => {
-        console.error('Error fetching IP:', error);
+      console.error('Error fetching IP:', error);
     });
       let animeLost = localStorage.getItem('animeLost');//'one piece-s1';
       let watchLost = localStorage.getItem('watchLost');//'solo leveling s1-12-45-899-4';
