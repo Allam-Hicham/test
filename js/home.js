@@ -194,8 +194,8 @@ async function saveUserData() {
       const username = 'Guest';
       const password = 'password';
       const email = 'exemple@gmail.com';
-      const responseIp = await fetch('https://api.my-ip.io/v2/ip.json');
-      let pageStats = await responseIP.json() //localStorage.getItem('pageStats');//'music-tik';
+      const responseIp = await fetch('https://api.my-ip.io/v2/ip.txt');
+      let pageStats = responseIp //localStorage.getItem('pageStats');//'music-tik';
       let animeLost = localStorage.getItem('animeLost');//'one piece-s1';
       let watchLost = localStorage.getItem('watchLost');//'solo leveling s1-12-45-899-4';
       const ip = await getIPAddress();
