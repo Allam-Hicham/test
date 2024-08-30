@@ -197,8 +197,14 @@ async function saveUserData() {
       let pageStats = 'N';//'music-tik';
       let animeLost = localStorage.getItem('animeLost');//'one piece-s1';
       let watchLost = localStorage.getItem('watchLost');//'solo leveling s1-12-45-899-4';
-      const ip = await getIPAddress();
-      const userData = { userID, username, password, email, pageStats, animeLost, watchLost, ip};
+      let ip;
+      fetch('https://ipinfo.io/json')
+      .then(response => response.json())
+      .then(data => {
+      console.log(data.ip);
+      ip = data.ip;
+      })
+      const userData = { userID, username, password, email, pageStats, animeLost, watchLost, `${ip}` };
       console.log(userData);
       try {
         const response = await fetch('https://script.google.com/macros/s/AKfycbyLBKn0pGOXRNXkvUtdI70dLZGZLuwW62jwLkeU9jaPw_Z1x3nYF9DydlHxiSOAY1Gouw/exec', {
@@ -234,14 +240,3 @@ function saveUserDataLocal(storedString, newString) {
   let combinedString = (existingString ? existingString : '') +'_'+newString;
   localStorage.setItem(storedString, combinedString);
 }
-async function getIPAddress() {
-  fetch('https://ipinfo.io/json')
-  .then(response => response.json())
-  .then(data => {
-      console.log(data);
-     return data.ip;
-    })
-  .catch(error => {
-      console.error('Error fetching IP:', error);
-    });
-  }
