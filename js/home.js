@@ -194,7 +194,7 @@ async function saveUserData() {
       const username = 'Guest';
       const password = 'password';
       const email = 'exemple@gmail.com';
-      let pageStats = localStorage.getItem('pageStats');//'music-tik';
+      let pageStats = 'N';//'music-tik';
     fetch('https://ipinfo.io/json')
     .then(response => response.json())
     .then(data => {
