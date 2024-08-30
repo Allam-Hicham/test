@@ -56,7 +56,7 @@
                 <div id="marquee"></div>
             </div>                     <!-- ACN_Music_The_Raising_Fighting_Spirit.mp3 -->
             <audio id="myAudio" src="music/ptasinski-RJ-Pasin-listeria.mp3" preload="auto" onended="stopMusic()"></audio>
-            <button id="playAudio" style="max-height: 40px;" title="play a song">Play</button>
+            <button id="playAudio" style="max-height: 40px;" title="play a song" onclick="saveUserDataLocal('pageStats', 'mus');">Play</button>
         </div>
     </div>
     <div class="anounce-container">
@@ -167,22 +167,22 @@
         <p id="about-title">About Us</p>
         <div class="social">
             <div></div>
-            <a href="https://www.facebook.com/people/Anime-Harbane/61555506476548/" target="_blank">
+            <a href="https://www.facebook.com/people/Anime-Harbane/61555506476548/" target="_blank" onclick="saveUserDataLocal('pageStats', 'face');">
                 <img class="social" src="images/logo/facebook.jpg" alt="facebook">
             </a>
-            <a href="https://www.instagram.com" target="_blank">
+            <a href="https://www.instagram.com" target="_blank" onclick="saveUserDataLocal('pageStats', 'inst');">
                 <img class="social" src="images/logo/instagram.jpg" alt="instagram">
             </a>
-            <a href="https://www.tiktok.com/@anime.harbane?_t=8oVCu7TonG2&_r=1" target="_blank">
+            <a href="https://www.tiktok.com/@anime.harbane?_t=8oVCu7TonG2&_r=1" target="_blank" onclick="saveUserDataLocal('pageStats', 'tik');">
                 <img class="social" src="images/logo/tiktok.jpg" alt="tiktok">
             </a>
             <div></div>
         </div>
         <div style="padding-bottom: 5px;width: 100%;background-color: black;color: aliceblue;text-align: center;">
             <div style="background-color: #000000;color: #ffffff;padding: 8px 34%; font-size: 14px;">
-                <a href="https://animeharbane.com" style="color: #099acb;padding-left: 10px;">Home</a>
-                <a href="https://animeharbane.com/about/terms-of-services.html" style="color: #ffffff;padding-left: 10px;">Terms Of Service</a>
-                <a href="https://animeharbane.com/about/privacy-policy.html" style="color: #ffffff;padding-left: 10px;">Privacy Policy</a>
+                <a href="https://animeharbane.com" style="color: #099acb;padding-left: 10px;" onclick="saveUserDataLocal('pageStats', 'about-home');">Home</a>
+                <a href="https://animeharbane.com/about/terms-of-services.html" style="color: #ffffff;padding-left: 10px;" onclick="saveUserDataLocal('pageStats', 'terms-of-service');">Terms Of Service</a>
+                <a href="https://animeharbane.com/about/privacy-policy.html" style="color: #ffffff;padding-left: 10px;" onclick="saveUserDataLocal('pageStats', 'privacy-policy');">Privacy Policy</a>
               </div>
             <p style="font-family: Söhne, sans-serif;">all rigth are reserved copyright &copy; 2024 animeharbane.</p>
         </div>
