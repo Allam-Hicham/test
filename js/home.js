@@ -197,19 +197,19 @@ async function saveUserData() {
       let pageStats = 'N';//'music-tik';
       let animeLost = localStorage.getItem('animeLost');//'one piece-s1';
       let watchLost = localStorage.getItem('watchLost');//'solo leveling s1-12-45-899-4';
+      try {
       const response_ip = await fetch('https://api.ipify.org/?format=json');
       const data_ip = await response_ip.json();
       const ip = await data_ip.ip; 
-      console.log(ip);
       const userData = { userID, username, password, email, pageStats, animeLost, watchLost, ip };
+      console.log(ip);
       console.log(userData);
-      try {
-        const response = await fetch('https://script.google.com/macros/s/AKfycbyLBKn0pGOXRNXkvUtdI70dLZGZLuwW62jwLkeU9jaPw_Z1x3nYF9DydlHxiSOAY1Gouw/exec', {
+      const response = await fetch('https://script.google.com/macros/s/AKfycbyLBKn0pGOXRNXkvUtdI70dLZGZLuwW62jwLkeU9jaPw_Z1x3nYF9DydlHxiSOAY1Gouw/exec', {
           method: 'POST',
           body: JSON.stringify(userData)
         });
   
-        const result = await response.json();
+      const result = await response.json();
         console.log(result);
         if (result.status === 'new_user_added') {
           console.log('لقد تمت اضافة حساب جديد بنجاح');
