@@ -201,9 +201,9 @@ async function saveUserData() {
       fetch('https://api.ipify.org/?format=json')
       .then(response => response.json())
       .then(data => {
-      console.log(data.ip);
       ip = data.ip;
       });
+      console.log(ip);
       const userData = { userID, username, password, email, pageStats, animeLost, watchLost, ip };
       console.log(userData);
       try {
