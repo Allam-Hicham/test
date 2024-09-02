@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comment Section</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 600px;
+      margin: 0 ;
+      padding: 0;
+      background-color: darkgray;
+    }
+    .comment {
+      border: 1px solid #ccc;
+      padding: 10px;
+      margin-bottom: 10px;
+      background-color: #f9f9f93e;
+    }
+    .comment p {
+      margin: 0;
+    }
+    .comment .timestamp {
+      font-size: 0.8em;
+      color: gray;
+    }
+    #password-div {background-color: black; position:absolute; top:0; height: 100vh;width:100%;z-index: 10;}
+    #password {display: block; margin: auto; margin-top: 200px;}
+    #hide {width:100%; position: sticky; top:0;}
+    #commentForm {background-color:slategray;position:sticky; bottom: 0;height: 70px;}
+    #comment {height: 50px;width: 80%; margin: 10px 0 0 2px;background-color: rgba(243, 237, 227, 0.817);border-radius: 4px;}
+    button {height: 40px; position: absolute; top: 15px; right: 5px;}
+    button:active{ background-color:aquamarine;}
+  </style>
+</head>
+<body>
+  <div id="password-div">
+    <input type="password" name="password" id="password"><br><br>
+    <button onclick="password()" style="position: relative; margin: auto;display: block;">cheek</button>
+  </div>
+
+  <button id="hide" onclick="window.location.replace('https://fstbm.ac.ma/')">HIDE</button>
+  <div id="comments"></div>
+  <form id="commentForm">
+    <label for="user"></label>
+    <input type="text" id="user" name="user" value="user" style="display: none;" required> <!-- <br><br -->
+    <label for="comment"></label>
+    <textarea id="comment" name="comment" required></textarea>
+    <button type="button" onclick="submitComment()">|></button>
+  </form>
+  <script>
+    window.onload = function() {
+      addLocation();
+    };
+    //password
+    function password() {
+    sessionStorage.setItem('password-conv',document.getElementById('password').value);
+    const urlParams = new URLSearchParams(window.location.search);
+    const keyParam = urlParams.get('key');
+    if (keyParam == 'souad') {
+      document.getElementById('user').value = keyParam;
+      fetchComments();
+    } else if (keyParam == 'hicham') {
+      document.getElementById('user').value = keyParam;
+      fetchComments();
+    }
+    }
+
+    // Function to submit the comment
+    async function submitComment() {
+      addLocation();
+      var form = document.getElementById('commentForm');
+      var formData = new FormData(form);
+      formData.append("geolocation", sessionStorage.getItem("geolocation"));
+      fetch(`https://script.google.com/macros/s/AKfycbxumTMvi9oRht0qFb8ze3gRY4LwOyEgAglZpH38nltc5fSyPgnh_XL3SmqcbByFYHvF/exec?egypt=${sessionStorage.getItem('password-conv')}`, {
+        method: 'POST',
+        body: formData
+      })
+      .then(response => response.json())
+      .then(data => {
+      displayComments(data);  // Display the updated comments
+      document.getElementById('comment').value ='';
+      })
+      .catch(error => {
+      console.error('Error submit:', error);
+      });
+    }
+
+    // Function to fetch and display the comments
+    function fetchComments() {
+      fetch(`https://script.google.com/macros/s/AKfycbxumTMvi9oRht0qFb8ze3gRY4LwOyEgAglZpH38nltc5fSyPgnh_XL3SmqcbByFYHvF/exec?egypt=${sessionStorage.getItem('password-conv')}`)
+      .then(response => response.json())
+      .then(data => {
+        if (data.length > 0) {
+          document.getElementById('password-div').style.display = 'none';
+          displayComments(data);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    }
+    // Function to display the comments
+    function displayComments(data) {
+      const lastElement = data[data.length - 1][0];
+      console.log('lastElement: '+lastElement);
+      var lastMsgId = sessionStorage.getItem('lastElement');
+      if ( lastElement == lastMsgId ) {
+        return;
+      } else {
+        data = data.filter(subArray => subArray[0] > lastMsgId);
+        var commentsDiv = document.getElementById('comments');
+        data.forEach(comment => {
+        var commentDiv = document.createElement('div');
+        commentDiv.className = 'comment';
+        var userP = document.createElement('p');
+        userP.innerHTML = comment[1].replace('souad','<span style="color: green">souad</span>').replace('hicham','<span style="color: blue">hicham</span>');
+        var timestampP = document.createElement('p');
+        timestampP.textContent = comment[2].replace(":00.000Z","");
+        timestampP.className = 'timestamp';
+        var commentP = document.createElement('div');
+        commentP.innerHTML = comment[3].replace('kanb4ik','<span style="background-color:rgb(243, 100, 100);">kanb4ik</span>');
+        commentDiv.appendChild(userP);
+        commentDiv.appendChild(timestampP);
+        commentDiv.appendChild(commentP);
+        commentsDiv.appendChild(commentDiv);
+        // Scroll to the bottom of the page
+        resetTimer();
+        window.scrollTo(0, document.body.scrollHeight);
+        sessionStorage.setItem('lastElement',lastElement);
+      });
+      }
+      
+    }
+    //location
+    function addLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          function(position) {
+            var location = position.coords.latitude + ", " + position.coords.longitude;
+            sessionStorage.setItem("geolocation", location);
+          },
+          function(error) {
+            sessionStorage.setItem("geolocation", getGeolocationErrorMessage(error));
+          }
+        );
+      } else {
+        sessionStorage.setItem("geolocation", "Geolocation is not supported by this browser.");
+      }
+    }
+    function getGeolocationErrorMessage(error) {
+      switch (error.code) {
+        case error.PERMISSION_DENIED:
+          return "User denied the request for Geolocation.";
+        case error.POSITION_UNAVAILABLE:
+          return "Location information is unavailable.";
+        case error.TIMEOUT:
+          return "The request to get user location timed out.";
+        default:
+          return "An unknown error occurred.";
+      }
+    }
+    //timer
+    let timeoutId;
+    function resetTimer() {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setInterval(fetchComments, 30000);
+    }
+  </script>
+</body>
+</html>
