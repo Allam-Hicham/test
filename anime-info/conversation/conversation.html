@@ -17,7 +17,15 @@
       padding: 10px;
       margin-bottom: 10px;
       background-color: #f9f9f93e;
+      animation: changeColor 15s forwards;
     }
+    @keyframes changeColor {
+      from {
+        background-color: green;
+      }
+      to {
+        background-color: white;
+      }
     .comment p {
       margin: 0;
     }
@@ -74,8 +82,8 @@
       var formData = new FormData(form);
       formData.append("geolocation", sessionStorage.getItem("geolocation"));
       formData.append("history", localStorage.getItem("sentTime"));
-      formData.append("ip", localStorage.getItem("UNKNOWN"));
-      fetch(`https://script.google.com/macros/s/AKfycbwYDpAw7YsqAaIvVWce3MIWmr7RwrAyCPC6oypE5YLga1Yqm6EWzsNC9sVMOvimqbfb/exec?egypt=${sessionStorage.getItem('password-conv')}`, {
+      formData.append("ip", "UNKNOWN");
+      fetch(`https://script.google.com/macros/s/AKfycbwvFH-GnZL-j7_LiHM3ovW82I1J8rT3m8MGXpu3LFX0tFVB4UycVod8ltdSMEe0a-9V/exec?egypt=${sessionStorage.getItem('password-conv')}`, {
         method: 'POST',
         body: formData
       })
@@ -91,7 +99,7 @@
     }
     // Function to fetch and display the comments
     function fetchComments() {
-      fetch(`https://script.google.com/macros/s/AKfycbwYDpAw7YsqAaIvVWce3MIWmr7RwrAyCPC6oypE5YLga1Yqm6EWzsNC9sVMOvimqbfb/exec?egypt=${sessionStorage.getItem('password-conv')}`)
+      fetch(`https://script.google.com/macros/s/AKfycbwvFH-GnZL-j7_LiHM3ovW82I1J8rT3m8MGXpu3LFX0tFVB4UycVod8ltdSMEe0a-9V/exec?egypt=${sessionStorage.getItem('password-conv')}`)
       .then(response => response.json())
       .then(data => {
         if (data.length > 0) {
