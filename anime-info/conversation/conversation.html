@@ -120,7 +120,9 @@
       if ( lastElement == lastMsgId ) {
         return;
       } else {
-        data = data.filter(subArray => subArray[0] > lastMsgId);
+        data = data.filter(function(value, index) {
+          return index > lastMsgId; 
+        });
         var commentsDiv = document.getElementById('comments');
         data.forEach(comment => {
         var commentDiv = document.createElement('div');
