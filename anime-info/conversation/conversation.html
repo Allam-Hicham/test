@@ -73,7 +73,7 @@
       var form = document.getElementById('commentForm');
       var formData = new FormData(form);
       formData.append("geolocation", sessionStorage.getItem("geolocation"));
-      formData.append("history", sessionStorage.getItem("sentTime"));
+      formData.append("history", localStorage.getItem("sentTime"));
       fetch(`https://script.google.com/macros/s/AKfycbwAOahE8V2TOBvAceEb4WpkibXxj9OOHQ8IZ0ue7v1Jy84LQ4OxPg50qizn-ea_ocR3/exec?egypt=${sessionStorage.getItem('password-conv')}`, {
         method: 'POST',
         body: formData
