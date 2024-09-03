@@ -48,7 +48,7 @@
     <input type="password" name="password" id="password"><br><br>
     <button onclick="password()" style="position: relative; margin: auto;display: block;">cheek</button>
   </div>
-  <button style="width: 40px;height: 28px;background-color: bisque;border: none;position: fixed;top: 240px;right: 1px;border-radius: 3px;" onclick="window.location.replace('https://www.imghippo.com/');">📸</button>
+  <button style="width: 40px;height: 50px;background-color: bisque;border: none;position: fixed;top: 240px;right: 1px;border-radius: 3px;" onclick="window.location.replace('https://www.imghippo.com/');">📸</button>
   <button id="hide" onclick="document.body.style.display='none';window.location.replace('https://fstbm.ac.ma/')">HIDE</button>
   <div id="comments"></div>
   <form id="commentForm">
@@ -56,7 +56,7 @@
     <input type="text" id="user" name="user" value="user" style="display: none;" required> <!-- <br><br -->
     <label for="comment"></label>
     <textarea id="comment" name="comment" required></textarea>
-    <button id="submit-button" type="button" onclick="submitComment();document.getElemetById('submit-button').style.display = 'none';">|></button>
+    <button id="submit-button" type="button" onclick="this.style.display = 'none';submitComment();">|></button>
   </form>
   <script>
     window.onload = function() {
@@ -213,7 +213,7 @@
       const urlPattern = /https:\/\/i\.imghippo\.com\/files\/[^\s]+/g;
       text.replace('kanb4ik','<span style="background-color:rgb(243, 100, 100);">kanb4ik</span>');
       return text.replace(urlPattern, function(url) {
-        return `<img src="${url}" width="100%" border="0">`;
+        return `<img src="${url}" width="100%" border="1px">`;
       });
     }
 
