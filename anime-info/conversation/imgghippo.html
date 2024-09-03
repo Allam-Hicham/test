@@ -31,8 +31,11 @@
       const formData = new FormData();
       formData.append('file', file);
 
+      const apiKey = 'COe3R5G6K5neN0TtyIlIKkBhnjKGzSrL'; // Your API key
+      const apiUrl = `https://www.imghippo.com/v1/upload?api_key=${apiKey}`;
+
       try {
-        const response = await fetch('/proxy/upload', { // Use a server-side proxy
+        const response = await fetch(apiUrl, {
           method: 'POST',
           body: formData
         });
@@ -41,7 +44,7 @@
 
         if (response.ok) {
           if (result.success) {
-            const imageUrl = result.data.url;
+            const imageUrl = result.data.view_url;
             document.getElementById('result').innerHTML = `
               Upload successful!<br>
               Image URL: <a href="${imageUrl}" target="_blank">${imageUrl}</a>
