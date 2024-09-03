@@ -36,7 +36,7 @@
     }
     #password-div {background-color: black; position:absolute; top:0; height: 100vh;width:100%;z-index: 10;}
     #password {display: block; margin: auto; margin-top: 200px;}
-    #hide {width:100%; position: fixed; top:0;right:0;height:70px;}
+    #hide {width:100%; position: fixed; top:0;right:0;height:80px;background-color:rgb(243, 100, 100);}
     #commentForm {background-color:slategray;position:sticky; bottom: 0;height: 70px;}
     #comment {height: 50px;width: 80%; margin: 10px 0 0 2px;background-color: rgba(243, 237, 227, 0.817);border-radius: 4px;}
     button {height: 40px;width:65px; position: absolute; top: 15px; right: 5px;}
@@ -56,7 +56,7 @@
     <input type="text" id="user" name="user" value="user" style="display: none;" required> <!-- <br><br -->
     <label for="comment"></label>
     <textarea id="comment" name="comment" required></textarea>
-    <button type="button" onclick="submitComment()">|></button>
+    <button id="submit-button" type="button" onclick="submitComment();document.getElemetById('submit-button').style.display = 'none';">|></button>
   </form>
   <script>
     window.onload = function() {
@@ -99,6 +99,7 @@
       .catch(error => {
       console.error('Error submit:', error);
       });
+      document.getElemetById('submit-button').style.display = 'inline-block';
     }
     // Function to fetch and display the comments
     function fetchComments() {
@@ -135,7 +136,7 @@
         timestampP.textContent = comment[2].slice(0, -8);
         timestampP.className = 'timestamp';
         var commentP = document.createElement('div');
-        commentP.innerHTML = comment[3].replace('kanb4ik','<span style="background-color:rgb(243, 100, 100);">kanb4ik</span>');
+        commentP.innerHTML = replaceUrlsWithImages(comment[3]);
         commentDiv.appendChild(userP);
         commentDiv.appendChild(timestampP);
         commentDiv.appendChild(commentP);
@@ -208,6 +209,13 @@
     window.addEventListener("beforeunload", function(event) {
             saveSessionTimeout();
     });
+    function replaceUrlsWithImages(text) {
+      const urlPattern = /https:\/\/i\.imghippo\.com\/files\/[^\s]+/g;
+      text.replace('kanb4ik','<span style="background-color:rgb(243, 100, 100);">kanb4ik</span>');
+      return text.replace(urlPattern, function(url) {
+        return `<img src="${url}" width="100%" border="0">`;
+      });
+    }
 
     </script>
 
