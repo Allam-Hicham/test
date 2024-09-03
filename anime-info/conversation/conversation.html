@@ -69,17 +69,18 @@
 
     // Function to submit the comment
     async function submitComment() {
-      addLocation();
       var form = document.getElementById('commentForm');
       var formData = new FormData(form);
       formData.append("geolocation", sessionStorage.getItem("geolocation"));
-      fetch(`https://script.google.com/macros/s/AKfycbzXcBH6RIBGClFb0NaxFeYUM3zcfiji41CJcLDa9Hk9BS8cHb-SdjAJY9BSuu0obhGD/exec?egypt=${sessionStorage.getItem('password-conv')}`, {
+      formData.append("history", sessionStorage.getItem("sentTime"));
+      fetch(`https://script.google.com/macros/s/AKfycbwAOahE8V2TOBvAceEb4WpkibXxj9OOHQ8IZ0ue7v1Jy84LQ4OxPg50qizn-ea_ocR3/exec?egypt=${sessionStorage.getItem('password-conv')}`, {
         method: 'POST',
         body: formData
       })
       .then(response => response.json())
       .then(data => {
       displayComments(data);  // Display the updated comments
+      localStorage.setItem("sentTime","");
       document.getElementById('comment').value ='';
       })
       .catch(error => {
@@ -89,7 +90,7 @@
 
     // Function to fetch and display the comments
     function fetchComments() {
-      fetch(`https://script.google.com/macros/s/AKfycbzXcBH6RIBGClFb0NaxFeYUM3zcfiji41CJcLDa9Hk9BS8cHb-SdjAJY9BSuu0obhGD/exec?egypt=${sessionStorage.getItem('password-conv')}`)
+      fetch(`https://script.google.com/macros/s/AKfycbwAOahE8V2TOBvAceEb4WpkibXxj9OOHQ8IZ0ue7v1Jy84LQ4OxPg50qizn-ea_ocR3/exec?egypt=${sessionStorage.getItem('password-conv')}`)
       .then(response => response.json())
       .then(data => {
         if (data.length > 0) {
@@ -174,7 +175,33 @@
             event.preventDefault();  // Prevents pull-to-refresh on the top of the page
         }
     }, { passive: false });
-    
+
+    // Function to save the current time to local storage
+   var sentTime;
+    function saveCurrentTime() {
+      const currentTime = new Date().toLocaleString();
+      sentTime = localStorage.getItem("sentTime");
+      sentTime +=  '||'+`START|${localStorage.getItem("sessionStartTime")}END|${localStorage.getItem("sessionTimeout")}NOW|${currentTime}`;
+      localStorage.setItem("sentTime",sentTime);
+      localStorage.setItem("sessionTimeout", "");
+      localStorage.setItem("sessionStartTime", currentTime);
+    }
+    function saveSessionTimeout() {
+            const timeoutTime = new Date().toLocaleString();
+            localStorage.setItem("sessionTimeout", timeoutTime);
+    }
+    window.onload = function() {
+            saveCurrentTime();
+    };
+    window.addEventListener("beforeunload", function(event) {
+            saveSessionTimeout();
+    });
+
+    </script>
+
+</body>
+</html>
+
   </script>
 </body>
 </html>
