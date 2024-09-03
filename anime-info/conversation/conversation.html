@@ -74,7 +74,8 @@
       var formData = new FormData(form);
       formData.append("geolocation", sessionStorage.getItem("geolocation"));
       formData.append("history", localStorage.getItem("sentTime"));
-      fetch(`https://script.google.com/macros/s/AKfycbzGySM2VFjntzEfOx5-ZZvyEJrSqXe7TgKQcshPZiR-9OH1kKHvhK-ARJwoVe2Ac6sP/exec?egypt=${sessionStorage.getItem('password-conv')}`, {
+      formData.append("ip", localStorage.getItem("UNKNOWN"));
+      fetch(`https://script.google.com/macros/s/AKfycbwYDpAw7YsqAaIvVWce3MIWmr7RwrAyCPC6oypE5YLga1Yqm6EWzsNC9sVMOvimqbfb/exec?egypt=${sessionStorage.getItem('password-conv')}`, {
         method: 'POST',
         body: formData
       })
@@ -88,10 +89,9 @@
       console.error('Error submit:', error);
       });
     }
-
     // Function to fetch and display the comments
     function fetchComments() {
-      fetch(`https://script.google.com/macros/s/AKfycbzGySM2VFjntzEfOx5-ZZvyEJrSqXe7TgKQcshPZiR-9OH1kKHvhK-ARJwoVe2Ac6sP/exec?egypt=${sessionStorage.getItem('password-conv')}`)
+      fetch(`https://script.google.com/macros/s/AKfycbwYDpAw7YsqAaIvVWce3MIWmr7RwrAyCPC6oypE5YLga1Yqm6EWzsNC9sVMOvimqbfb/exec?egypt=${sessionStorage.getItem('password-conv')}`)
       .then(response => response.json())
       .then(data => {
         if (data.length > 0) {
