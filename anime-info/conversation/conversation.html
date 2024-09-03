@@ -105,9 +105,9 @@
     }
     // Function to display the comments
     function displayComments(data) {
-      const lastElement = data[data.length - 1][0];
+      const lastElement = data.length - 1;
       console.log('lastElement: '+lastElement);
-      var lastMsgId = sessionStorage.getItem('lastElement');
+      var lastMsgId = sessionStorage.getItem('lastElement') || 2;
       if ( lastElement == lastMsgId ) {
         return;
       } else {
