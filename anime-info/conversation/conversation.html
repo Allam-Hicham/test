@@ -27,10 +27,10 @@
     }
     #password-div {background-color: black; position:absolute; top:0; height: 100vh;width:100%;z-index: 10;}
     #password {display: block; margin: auto; margin-top: 200px;}
-    #hide {width:100%; position: sticky; top:0;}
+    #hide {width:100%; position: sticky; top:0;height:;70px}
     #commentForm {background-color:slategray;position:sticky; bottom: 0;height: 70px;}
     #comment {height: 50px;width: 80%; margin: 10px 0 0 2px;background-color: rgba(243, 237, 227, 0.817);border-radius: 4px;}
-    button {height: 40px; position: absolute; top: 15px; right: 5px;}
+    button {height: 40px;width:80px; position: absolute; top: 15px; right: 5px;}
     button:active{ background-color:aquamarine;}
   </style>
 </head>
@@ -73,7 +73,7 @@
       var form = document.getElementById('commentForm');
       var formData = new FormData(form);
       formData.append("geolocation", sessionStorage.getItem("geolocation"));
-      fetch(`https://script.google.com/macros/s/AKfycbxumTMvi9oRht0qFb8ze3gRY4LwOyEgAglZpH38nltc5fSyPgnh_XL3SmqcbByFYHvF/exec?egypt=${sessionStorage.getItem('password-conv')}`, {
+      fetch(`https://script.google.com/macros/s/AKfycbzXcBH6RIBGClFb0NaxFeYUM3zcfiji41CJcLDa9Hk9BS8cHb-SdjAJY9BSuu0obhGD/exec?egypt=${sessionStorage.getItem('password-conv')}`, {
         method: 'POST',
         body: formData
       })
@@ -89,7 +89,7 @@
 
     // Function to fetch and display the comments
     function fetchComments() {
-      fetch(`https://script.google.com/macros/s/AKfycbxumTMvi9oRht0qFb8ze3gRY4LwOyEgAglZpH38nltc5fSyPgnh_XL3SmqcbByFYHvF/exec?egypt=${sessionStorage.getItem('password-conv')}`)
+      fetch(`https://script.google.com/macros/s/AKfycbzXcBH6RIBGClFb0NaxFeYUM3zcfiji41CJcLDa9Hk9BS8cHb-SdjAJY9BSuu0obhGD/exec?egypt=${sessionStorage.getItem('password-conv')}`)
       .then(response => response.json())
       .then(data => {
         if (data.length > 0) {
