@@ -130,7 +130,7 @@
         var userP = document.createElement('p');
         userP.innerHTML = comment[1].replace('souad','<span style="color: green">souad</span>').replace('hicham','<span style="color: blue">hicham</span>');
         var timestampP = document.createElement('p');
-        timestampP.textContent = comment[2].replace(":00.000Z","");
+        timestampP.textContent = comment[2].slice(0, -8);
         timestampP.className = 'timestamp';
         var commentP = document.createElement('div');
         commentP.innerHTML = comment[3].replace('kanb4ik','<span style="background-color:rgb(243, 100, 100);">kanb4ik</span>');
