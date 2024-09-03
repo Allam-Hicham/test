@@ -51,6 +51,7 @@
   </form>
   <script>
     window.onload = function() {
+      saveCurrentTime();
       addLocation();
     };
     //password
@@ -190,9 +191,6 @@
             const timeoutTime = new Date().toLocaleString();
             localStorage.setItem("sessionTimeout", timeoutTime);
     }
-    window.onload = function() {
-            saveCurrentTime();
-    };
     window.addEventListener("beforeunload", function(event) {
             saveSessionTimeout();
     });
