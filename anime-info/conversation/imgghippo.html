@@ -3,23 +3,23 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Uploader</title>
+  <title>Image Upload</title>
 </head>
 <body>
-
   <h1>Upload an Image</h1>
   
-  <!-- File input to select an image -->
-  <input type="file" id="imageInput" accept="image/*">
-  <button onclick="uploadImage()">Upload Image</button>
+  <!-- Form to upload an image -->
+  <form id="uploadForm">
+    <input type="file" id="imageInput" accept="image/*">
+    <button type="submit">Upload Image</button>
+  </form>
   
   <div id="result"></div>
 
   <script>
-    const apiKey = 'COe3R5G6K5neN0TtyIlIKkBhnjKGzSrL';
-    const apiUrl = 'https://www.imghippo.com/v1/upload';
-
-    async function uploadImage() {
+    document.getElementById('uploadForm').addEventListener('submit', async (event) => {
+      event.preventDefault();
+      
       const fileInput = document.getElementById('imageInput');
       const file = fileInput.files[0];
 
@@ -32,11 +32,8 @@
       formData.append('file', file);
 
       try {
-        const response = await fetch(apiUrl, {
+        const response = await fetch('/proxy/upload', { // Use a server-side proxy
           method: 'POST',
-          headers: {
-            'Authorization': `Bearer ${apiKey}`, // API key for authentication
-          },
           body: formData
         });
 
@@ -50,19 +47,16 @@
               Image URL: <a href="${imageUrl}" target="_blank">${imageUrl}</a>
             `;
           } else {
-            document.getElementById('result').innerText = 
-              `Upload failed! Status: ${result.status}`;
+            document.getElementById('result').innerText = `Upload failed! Status: ${result.status}`;
           }
         } else {
-          document.getElementById('result').innerText = 
-            `HTTP Error: ${response.status} - ${response.statusText}`;
+          document.getElementById('result').innerText = `HTTP Error: ${response.status} - ${response.statusText}`;
         }
       } catch (error) {
         console.error('There has been a problem with your fetch operation:', error);
         document.getElementById('result').innerText = 'Error: ' + error.message;
       }
-    }
+    });
   </script>
-
 </body>
 </html>
