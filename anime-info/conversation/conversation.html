@@ -95,11 +95,12 @@
       displayComments(data);  // Display the updated comments
       localStorage.setItem("sentTime","");
       document.getElementById('comment').value ='';
+      document.getElemetById('submit-button').style.display = 'inline-block';
       })
       .catch(error => {
       console.error('Error submit:', error);
-      });
       document.getElemetById('submit-button').style.display = 'inline-block';
+      });
     }
     // Function to fetch and display the comments
     function fetchComments() {
