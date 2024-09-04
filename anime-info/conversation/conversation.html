@@ -34,9 +34,10 @@
       font-size: 0.8em;
       color: gray;
     }
+    .comment-text{ font-family:'Courier New';}
     #password-div {background-color: black; position:absolute; top:0; height: 100vh;width:100%;z-index: 10;}
     #password {display: block; margin: auto; margin-top: 200px;}
-    #hide {width:100%; position: fixed; top:0;right:0;height:80px;background-color:rgb(243, 100, 100);}
+    #hide {width:100%; position: sticky; top:0;right:0;height:80px;background-color:rgb(243, 100, 100);}
     #commentForm {background-color:slategray;position:sticky; bottom: 0;height: 70px;}
     #comment {height: 50px;width: 80%; margin: 10px 0 0 2px;background-color: rgba(243, 237, 227, 0.817);border-radius: 4px;}
     button {height: 40px;width:65px; position: absolute; top: 15px; right: 5px;}
@@ -48,7 +49,7 @@
     <input type="password" name="password" id="password"><br><br>
     <button onclick="password()" style="position: relative; margin: auto;display: block;">cheek</button>
   </div>
-  <button style="width: 40px;height: 50px;background-color: bisque;border: none;position: fixed;top: 240px;right: 1px;border-radius: 3px;" onclick="window.open('https:\/\/www\.imghippo\.com\/', '_blank').focus();">📸</button>
+  <button style="width: 40px;height: 50px;background-color: bisque;border: none;position: fixed;top: 340px;right: 1px;border-radius: 3px;" onclick="window.open('https:\/\/www\.imghippo\.com\/', '_blank').focus();">📸</button>
   <button id="hide" onclick="document.body.style.display='none';window.location.replace('https://fstbm.ac.ma/')">HIDE</button>
   <div id="comments"></div>
   <form id="commentForm">
@@ -134,11 +135,12 @@ function fetchComments() {
         var commentDiv = document.createElement('div');
         commentDiv.className = 'comment';
         var userP = document.createElement('p');
-        userP.innerHTML = comment[1].replace('souad','<span style="color: green">souad</span>').replace('hicham','<span style="color: blue">hicham</span>');
+        userP.innerHTML = comment[1].replace('souad','<span style="color: pink">souad</span>').replace('hicham','<span style="color: royalblue">hicham</span>');
         var timestampP = document.createElement('p');
         timestampP.textContent = comment[2].slice(0, -8);
         timestampP.className = 'timestamp';
         var commentP = document.createElement('div');
+        commentP.className = 'comment-text';
         commentP.innerHTML = replaceUrlsWithImages(comment[3]);
         commentDiv.appendChild(userP);
         commentDiv.appendChild(timestampP);
