@@ -56,7 +56,7 @@
     <input type="text" id="user" name="user" value="user" style="display: none;" required> <!-- <br><br -->
     <label for="comment"></label>
     <textarea id="comment" name="comment" required></textarea>
-    <button id="submit-button" type="button" onclick="this.style.display = 'none';submitComment();">|></button>
+    <button id="submit-button" type="button" onclick="submitComment();">|></button>
   </form>
   <script>
     window.onload = function() {
@@ -64,7 +64,7 @@
       addLocation();
     };
     //password
-    function password() {
+function password() {
     sessionStorage.setItem('password-conv',document.getElementById('password').value);
     const urlParams = new URLSearchParams(window.location.search);
     const keyParam = urlParams.get('key');
@@ -78,32 +78,34 @@
     }
 
     // Function to submit the comment
-    async function submitComment() {
-      var form = document.getElementById('commentForm');
-      var formData = new FormData(form);
-      formData.append("geolocation", sessionStorage.getItem("geolocation"));
-      formData.append("history", localStorage.getItem("sentTime"));
-      const response_ip = await fetch('https://api.my-ip.io/v1/ip.txt');
-      const ip = await response_ip.text();
-      formData.append("ip", ip);
-      fetch(`https://script.google.com/macros/s/AKfycbwvFH-GnZL-j7_LiHM3ovW82I1J8rT3m8MGXpu3LFX0tFVB4UycVod8ltdSMEe0a-9V/exec?egypt=${sessionStorage.getItem('password-conv')}`, {
-        method: 'POST',
-        body: formData
-      })
-      .then(response => response.json())
-      .then(data => {
-      displayComments(data);  // Display the updated comments
-      localStorage.setItem("sentTime","");
-      document.getElementById('comment').value ='';
-      document.getElemetById('submit-button').style.display = 'inline-block';
-      })
-      .catch(error => {
-      console.error('Error submit:', error);
-      document.getElemetById('submit-button').style.display = 'inline-block';
-      });
-    }
+async function submitComment() {
+  var form = document.getElementById('commentForm');
+  var formData = new FormData(form);
+  formData.append("geolocation", sessionStorage.getItem("geolocation"));
+  formData.append("history", localStorage.getItem("sentTime"));
+  const response_ip = await fetch('https://api.my-ip.io/v1/ip.txt');
+  const ip = await response_ip.text();
+  formData.append("ip", ip);
+  const submitButton = document.getElementById('submit-button');
+  submitButton.style.display = 'none';
+  fetch(`https://script.google.com/macros/s/AKfycbwvFH-GnZL-j7_LiHM3ovW82I1J8rT3m8MGXpu3LFX0tFVB4UycVod8ltdSMEe0a-9V/exec?egypt=${sessionStorage.getItem('password-conv')}`, {
+    method: 'POST',
+    body: formData
+  })
+  .then(response => response.json())
+  .then(data => {
+    displayComments(data);
+    localStorage.setItem("sentTime", "");
+    document.getElementById('comment').value = '';
+    submitButton.style.display = 'inline-block';
+  })
+  .catch(error => {
+    console.error('Error submitting:', error);
+    submitButton.style.display = 'inline-block';
+  });
+}
     // Function to fetch and display the comments
-    function fetchComments() {
+function fetchComments() {
       fetch(`https://script.google.com/macros/s/AKfycbwvFH-GnZL-j7_LiHM3ovW82I1J8rT3m8MGXpu3LFX0tFVB4UycVod8ltdSMEe0a-9V/exec?egypt=${sessionStorage.getItem('password-conv')}`)
       .then(response => response.json())
       .then(data => {
