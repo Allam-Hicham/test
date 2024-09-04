@@ -12,11 +12,14 @@
       padding: 0;
       background-color: darkgray;
     }
+    #comments{background-image: url("laser-light.jpg");}
     .comment {
-      border: 1px solid #ccc;
-      padding: 10px;
+      border: 0.8px solid #ccc;
+      border-radius:5px;
+      border-top-right-radius: 15px;
+      padding: 5px;
       margin-bottom: 10px;
-      background-color: #f9f9f93e;
+      margin-right: 3px;
       animation: changeColor 15s forwards;
     }
     @keyframes changeColor {
@@ -24,17 +27,18 @@
         background-color: green;
       }
       to {
-        background-color: white;
+        background-color: rgba(28, 9, 9, 0.8);
       }
     }
     .comment p {
       margin: 0;
     }
-    .comment .timestamp {
+    .timestamp {
       font-size: 0.8em;
       color: gray;
     }
-    .comment-text{ font-family:'Courier New';}
+    .comment-text{ font-family:'Courier New';margin-left:1px;margin-right:1px;padding-left: 3px;border-radius: 1px;
+                  background-color: rgba(222, 211, 211, 0.2);color: white; }
     #password-div {background-color: black; position:absolute; top:0; height: 100vh;width:100%;z-index: 10;}
     #password {display: block; margin: auto; margin-top: 200px;}
     #hide {width:100%; position: sticky; top:0;right:0;height:80px;background-color:rgb(243, 100, 100);}
@@ -50,6 +54,7 @@
     <button onclick="password()" style="position: relative; margin: auto;display: block;">cheek</button>
   </div>
   <button style="width: 40px;height: 50px;background-color: bisque;border: none;position: fixed;top: 340px;right: 1px;border-radius: 3px;" onclick="window.open('https:\/\/www\.imghippo\.com\/', '_blank').focus();">📸</button>
+  <div style="height:80px;">push comment down hiding</div>
   <button id="hide" onclick="document.body.style.display='none';window.location.replace('https://fstbm.ac.ma/')">HIDE</button>
   <div id="comments"></div>
   <form id="commentForm">
