@@ -20,7 +20,7 @@ function epShow(animeName, epHash, n, player) {
             <iframe id="myVideo" src="https://mega.nz/embed/${epHash}" frameborder="0" title="video player"></iframe>
             <button id="stretch" onclick="stretch()">full screen</button>
         `;
-    } else {
+    } else if (player == 'videa') {
         document.getElementById('videoPlayer').innerHTML = `
             <iframe id="myVideoVidea" width="100%" style="justify-content: center;" height="100%"
                 src="//videa.hu/player?v=${epHash}" 
@@ -30,11 +30,22 @@ function epShow(animeName, epHash, n, player) {
                 frameborder="0" 
                 sandbox="allow-same-origin allow-scripts"></iframe>
         `;
-    }
+    } else if (player == 'ok') {
+        document.getElementById('videoPlayer').innerHTML = `
+            <iframe id="myVideoVidea" width="100%" style="justify-content: center;" height="100%"
+                src="//www.ok.ru/videoembed/${epHash}" 
+                allowfullscreen="allowfullscreen" 
+                webkitallowfullscreen="webkitallowfullscreen"
+                mozallowfullscreen="mozallowfullscreen" 
+                frameborder="0" 
+                sandbox="allow-same-origin allow-scripts"></iframe>
+        `;
+    } else if (player == 'drive'){
+        document.getElementById('videoPlayer').innerHTML = "";
+    } else{document.getElementById('videoPlayer').innerHTML = "";}
 
     document.getElementById('ep_target').scrollIntoView({ behavior: 'smooth' });
-    fetch('https://script.google.com/macros/s/AKfycbwAAS33Q0OFUHIsJIFOy09z6yKLwqE1Fj5t-z2yU-3DFu8-RBzuDzYDwFxFV2Qt0ptr2A/exec');
-    setTimeout(() => document.getElementById('spinner_container').style.display = 'none', 1000);
+    setTimeout(() => document.getElementById('spinner_container').style.display = 'none', 1500);
 }
 
 
