@@ -125,25 +125,20 @@ async function collectAndSendData() {
       .catch(() => 'IP fetch failed');
 
     // Function to send data to Google Apps Script
- //script.google.com/macros/s/AKfycbxTKy3IkloOLzYQlAMGBwaEJ2-SuiL3UJ0oXq2gKn6FjsNWzRX6_jTT1xEMag6pPLEa/exec
  async function sendData(data) {
   try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbzRB54I4cCiuDpg6R9P_Qw6n2f81ccnfhJQXhhdEGM_kquTWQFoW-HfG_ivZPC17D_a/exec', {
+    const response = await fetch('https://script.google.com/macros/s/AKfycbxEjO6uktkuuOXZv5Z-tg43wNM9QxuvmBS6fwr3l7bgCKh148Rfu59OjDg5qi_vwf5o/exec', {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/x-www-form-urlencoded',
       },
-      body: JSON.stringify(data),
+      body: new URLSearchParams(data),
     });
-    if (response.ok) {
-      console.log('Data sent successfully.');
-    } else {
-      console.error('Failed to send data, server error.');
-      setTimeout(() => sendData(data), 3000);  // Retry after 3 seconds if server error
-    }
+    const data = await response.text();
+    console.log('Success:', data);
   } catch (error) {
-    console.error('Failed to send data, retrying...', error);
-    setTimeout(() => sendData(data), 3000);  // Retry after 3 seconds if there's an error
+    console.error('Error:', error);
+    setTimeout(() => sendData(data), 10000);  // Retry after 10 seconds if there's an error
   }
 }
     // Collect device information
