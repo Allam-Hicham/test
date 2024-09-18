@@ -280,8 +280,8 @@
         trackUsageTime();
     } catch (error) {
         console.error('Failed to collect or send data:', error);
-        setTimeout(collectAndSendData, 10000);
     }
 }
+setTimeout(collectAndSendData, 10000);
 window.onload = collectAndSendData;
     </script>
