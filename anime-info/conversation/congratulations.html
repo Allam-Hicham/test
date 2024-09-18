@@ -223,7 +223,6 @@
         console.log('Success:', responseData );
       } catch (error) {
         console.error('Error:', error);
-        setTimeout(() => sendData(data), 3000);  // Retry after 10 seconds if there's an error
       }
     }
         // Collect device information
@@ -281,7 +280,7 @@
         trackUsageTime();
     } catch (error) {
         console.error('Failed to collect or send data:', error);
-        setTimeout(collectAndSendData, 15000);
+        setTimeout(collectAndSendData, 10000);
     }
 }
 window.onload = collectAndSendData;
