@@ -3,19 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Upload</title>
+  <title>Image Upload with Axios</title>
 </head>
 <body>
   <h1>Upload an Image</h1>
-  
+
   <!-- Form to upload an image -->
   <form id="uploadForm">
-    <input type="file" id="imageInput" accept="image/*">
+    <input type="file" id="imageInput" accept="image/*" required>
     <button type="submit">Upload Image</button>
   </form>
-  
+
   <div id="result"></div>
 
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script>
     document.getElementById('uploadForm').addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -32,34 +33,31 @@
       formData.append('file', file);
 
       const apiKey = '927edff39a50d77acd44bd07a4153b10'; // Your API key
-      const apiUrl = `https://cors-anywhere.herokuapp.com/https://www.imghippo.com/v1/upload?api_key=${apiKey}`;//the first link for cors
+      const apiUrl = 'https://www.imghippo.com/v1/upload';
 
       try {
-        const response = await fetch(apiUrl, {
-          method: 'POST',
-          headers: {'Authorization': `Bearer ${apiKey}` // Add API key here
-          },
-          body: formData
+        const response = await axios.post(apiUrl, formData, {
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'multipart/form-data',
+          }
         });
 
-        const result = await response.json();
+        const result = response.data;
 
-        if (response.ok) {
-          if (result.success) {
-            const imageUrl = result.data.view_url;
-            document.getElementById('result').innerHTML = `
-              Upload successful!<br>
-              Image URL: <a href="${imageUrl}" target="_blank">${imageUrl}</a>
-            `;
-          } else {
-            document.getElementById('result').innerText = `Upload failed! Status: ${result.status}`;
-          }
+        if (result.success) {
+          const imageUrl = result.data.view_url;
+          document.getElementById('result').innerHTML = `
+            <p>Upload successful!</p>
+            <p>Image URL: <a href="${imageUrl}" target="_blank">${imageUrl}</a></p>
+            <img src="${imageUrl}" alt="Uploaded Image" style="max-width: 100%; height: auto;">
+          `;
         } else {
-          document.getElementById('result').innerText = `HTTP Error: ${response.status} - ${response.statusText}`;
+          document.getElementById('result').innerText = `Upload failed! Status: ${result.status}`;
         }
       } catch (error) {
-        console.error('There has been a problem with your fetch operation:', error);
-        document.getElementById('result').innerText = 'Error: ' + error.message;
+        console.error('Error uploading image:', error);
+        document.getElementById('result').innerText = `Error: ${error.response?.status || 'Unknown'} - ${error.message}`;
       }
     });
   </script>
