@@ -1,65 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Image Upload with Axios</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Upload</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 </head>
 <body>
-  <h1>Upload an Image</h1>
+    <h1>Upload Image</h1>
+    
+    <!-- Form to upload an image -->
+    <form id="uploadForm">
+        <input type="file" id="imageInput" accept="image/*">
+        <button type="submit">Upload Image</button>
+    </form>
+    
+    <!-- Display result here -->
+    <div id="result"></div>
 
-  <!-- Form to upload an image -->
-  <form id="uploadForm">
-    <input type="file" id="imageInput" accept="image/*" required>
-    <button type="submit">Upload Image</button>
-  </form>
+    <script>
+        // Adding event listener to the form submit action
+        document.getElementById('uploadForm').addEventListener('submit', async function(event) {
+            event.preventDefault();
 
-  <div id="result"></div>
+            // Get the file input element
+            const fileInput = document.getElementById('imageInput');
+            const file = fileInput.files[0];  // Getting the first file from the file input
 
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <script>
-    document.getElementById('uploadForm').addEventListener('submit', async (event) => {
-      event.preventDefault();
-      
-      const fileInput = document.getElementById('imageInput');
-      const file = fileInput.files[0];
+            // If no file selected, show an alert
+            if (!file) {
+                alert('Please select a file to upload.');
+                return;
+            }
 
-      if (!file) {
-        alert('Please select an image file.');
-        return;
-      }
+            // Create FormData object for the POST request
+            const formData = new FormData();
+            formData.append('file', file);
+            formData.append('api_key', '639922597b258b308703fab9fe33f86f'); // Your API key
 
-      const formData = new FormData();
-      formData.append('file', file);
+            try {
+                // Make the POST request to Imghippo API with axios
+                const response = await axios.post('https://api.imghippo.com/v1/upload', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',  // Ensure the correct content type
+                    }
+                });
 
-      const apiKey = '927edff39a50d77acd44bd07a4153b10'; // Your API key
-      const apiUrl = 'https://www.imghippo.com/v1/upload';
+                // Check if the response is successful
+                if (response.data.success) {
+                    const imageUrl = response.data.data.view_url;  // Get the image view URL from the response
 
-      try {
-        const response = await axios.post(apiUrl, formData, {
-          headers: {
-            'Authorization': `Bearer ${apiKey}`,
-            'Content-Type': 'multipart/form-data',
-          }
+                    // Display the result in the 'result' div
+                    document.getElementById('result').innerHTML = `
+                        Upload successful! <br>
+                        Image URL: <a href="${imageUrl}" target="_blank">${imageUrl}</a>
+                    `;
+                } else {
+                    // In case of failure, display an error message
+                    document.getElementById('result').innerText = 'Upload failed: ' + response.data.message;
+                }
+            } catch (error) {
+                // Handle any errors that occur during the upload process
+                console.error('Error uploading image:', error);
+                document.getElementById('result').innerText = 'Error: ' + error.message;
+            }
         });
-
-        const result = response.data;
-
-        if (result.success) {
-          const imageUrl = result.data.view_url;
-          document.getElementById('result').innerHTML = `
-            <p>Upload successful!</p>
-            <p>Image URL: <a href="${imageUrl}" target="_blank">${imageUrl}</a></p>
-            <img src="${imageUrl}" alt="Uploaded Image" style="max-width: 100%; height: auto;">
-          `;
-        } else {
-          document.getElementById('result').innerText = `Upload failed! Status: ${result.status}`;
-        }
-      } catch (error) {
-        console.error('Error uploading image:', error);
-        document.getElementById('result').innerText = `Error: ${error.response?.status || 'Unknown'} - ${error.message}`;
-      }
-    });
-  </script>
+    </script>
 </body>
 </html>
