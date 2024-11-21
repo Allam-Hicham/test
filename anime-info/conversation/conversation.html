@@ -7,7 +7,6 @@
   <style>
     body {
       font-family: Arial, sans-serif;
-      max-width: 600px;
       margin: 0 ;
       padding: 0;
       background-color: darkgray;
@@ -39,7 +38,7 @@
     }
     .comment-text{ font-family:'Courier New';margin-left:1px;margin-right:1px;padding-left: 3px;border-radius: 1px;
                   background-color: rgba(222, 211, 211, 0.2);color: white; }
-    #password-div {background-color: black; position:absolute; top:0; height: 100vh;width:100%;z-index: 10;text-align:center}
+    #password-div {background-color: black; position:absolute; top:0; height: 100vh;width:100%;z-index: 10;}
     #password {display: block; margin: auto; margin-top: 200px;}
     #hide {width:100%; position: sticky; top:0;right:0;height:80px;background-color:rgb(243, 100, 100);}
     #commentForm {background-color:slategray;position:sticky; bottom: 0;height: 70px;}
@@ -49,11 +48,13 @@
   </style>
 </head>
 <body>
-  <div>
+  <!-- the LOG IN interface-->
     <div id="password-div">
       <input type="password" name="password" id="password"><br><br>
       <button onclick="password()" style="position: relative; margin: auto;display: block;">cheek</button>
     </div>
+  <!-- body interface-->
+   <div style="margin:auto;max-width: 600px;">
     <button style="width: 40px;height: 50px;background-color: bisque;border: none;position: fixed;top: 340px;right: 1px;border-radius: 3px;" onclick="window.open('https:\/\/www\.imghippo\.com\/', '_blank').focus();">📸</button>
     <div style="height:80px;">push comment down hiding</div>
     <button id="hide" onclick="document.body.style.display='none';window.location.replace('https://fstbm.ac.ma/')">HIDE</button>
