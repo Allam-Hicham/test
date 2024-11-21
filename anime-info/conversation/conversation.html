@@ -40,9 +40,9 @@
                   background-color: rgba(222, 211, 211, 0.2);color: white; }
     #password-div {background-color: black; position:absolute; top:0; height: 100vh;width:100%;z-index: 10;}
     #password {display: block; margin: auto; margin-top: 200px;}
-    #hide {width:100%; position: sticky; top:0;right:0;height:80px;background-color:rgb(243, 100, 100);}
+    #hide {width:100%; position: sticky; top:0;right:0;height:60px;background-color:rgb(243, 100, 100);}
     #commentForm {background-color:slategray;position:sticky; bottom: 0;height: 70px;}
-    #comment {height: 50px;width: 80%; margin: 10px 0 0 2px;background-color: rgba(243, 237, 227, 0.817);border-radius: 4px;}
+    #comment {height:50px; min-width:80%; max-width:80%; margin: 10px 0 0 2px;background-color: rgba(243, 237, 227, 0.817);border-radius: 3.5px;}
     button {height: 40px;width:65px; position: absolute; top: 15px; right: 5px;}
     button:active{ background-color:aquamarine;}
   </style>
@@ -57,7 +57,7 @@
    <div style="margin:auto;max-width: 600px;">
     <button style="width: 40px;height: 50px;background-color: bisque;border: none;position: fixed;top: 340px;right: 1px;border-radius: 3px;" onclick="window.open('https:\/\/www\.imghippo\.com\/', '_blank').focus();">📸</button>
     <div style="height:80px;">push comment down hiding</div>
-    <button id="hide" onclick="document.body.style.display='none';window.location.replace('https://fstbm.ac.ma/')">HIDE</button>
+    <button id="hide" onclick="document.body.style.display='none';window.location.replace('https://fstbm.ac.ma/')">-----تسجيل الخروج-----</button>
     <div id="comments"></div>
     <form id="commentForm">
       <label for="user"></label>
